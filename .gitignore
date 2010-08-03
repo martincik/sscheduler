@@ -1,0 +1,17 @@
+.bundle/*
+dump.rdb
+*.log
+log/*
+db/schema.rb
+db/schema.sql
+config/database.yml
+tmp/*
+script/*
+bin/*
+vendor/gems/*
+vendor/specifications/*
+.autotest
+doc/specs.html
+doc/*
+coverage
+

@@ -1,0 +1,10 @@
+a.isok-true, a.isok-true:hover, a.isok-true:visited {
+  padding: 0 0 7px 25px;
+  background: url(/images/icons/silk/accept.png) top left no-repeat;
+}
+
+a.isok-false, a.isok-false:hover, a.isok-false:visited {
+  padding: 0 0 7px 25px;
+  background: url(/images/icons/silk/cancel.png) top left no-repeat;
+}
+

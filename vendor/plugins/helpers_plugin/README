@@ -1,0 +1,35 @@
+HelpersPlugin
+=============
+
+=CONTACT DETAILS
+
+  Author: Skvely.CZ
+
+=AVAILABLE METHODS
+	
+  format_date(obj)
+  format_datetime(obj)
+  random_password(size)
+  
+  authorized?(permission)
+  multi_authorized?(permissions, cond = 'or')
+  full_domain(subdomain)
+  hx(obj)
+  hb(obj)
+  hmail(obj)
+  hwww(obj)
+  hmoney(obj, currency_code='')
+  hdate(obj)
+  htime(obj)
+  huser(obj)
+  pof_order_header(pof, options = {})
+  pof_navigation(pof)
+  error_messages_for(object_name, options = {})
+  
+  date_field(object_name, property_name, options = {})
+  datetime_field(object_name, property_name, options = {})
+  filter_date_field(pof, property_name)
+  filter_datetime_field(pof, property_name)
+  resizeable_text_area(object_name, property_name)
+	
+	  
