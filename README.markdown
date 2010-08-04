@@ -1,5 +1,7 @@
 # Cron
 
+Cron jobs are set in file 'config/schedule.rb'.
+
 ### Update crontab
     rake cron:update_crontab
 
