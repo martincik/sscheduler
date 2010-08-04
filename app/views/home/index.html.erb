@@ -7,7 +7,7 @@
     <tr>
       <th>&nbsp;</th>
       <th>Name</th>
-      <th>Price</th>
+      <th>Price (<%= current_shop.shop.currency %>)</th>
       <th>Type</th>
       <th>Visible from</th>
       <th>Visible to</th>
@@ -24,11 +24,11 @@
         >
       </td>
       <td><%= link_to product.title, "http://#{current_shop.url}/admin/products/#{product.id}" %></td>
-      <td><%= product.price_range %> <%= current_shop.shop.currency %></td>
+      <td style="text-align: center;"><%= product.price_range %></td>
       <td><%= product.product_type %></td>
-      <td><%= @scheduled_products[product.id.to_s].nil? ? '---' : hdatetime(@scheduled_products[product.id.to_s].from_time) %></td>
-      <td><%= @scheduled_products[product.id.to_s].nil? ? '---' : hdatetime(@scheduled_products[product.id.to_s].to_time) %></td>
-      <td><%= is_ok_tag product.published_at %></td>
+      <td style="text-align: center;"><%= @scheduled_products[product.id.to_s].nil? ? '---' : hdatetime(@scheduled_products[product.id.to_s].from_time) %></td>
+      <td style="text-align: center;"><%= @scheduled_products[product.id.to_s].nil? ? '---' : hdatetime(@scheduled_products[product.id.to_s].to_time) %></td>
+      <td style="text-align: center;"><%= is_ok_tag product.published_at %></td>
     </tr>
     <% end -%>
   </tbody>
@@ -50,6 +50,10 @@
   <%= submit_tag 'schedule', {:id => 'schedule'} %>
   <%= javascript_tag '$("#from_time").ptTimeSelect(); $("#to_time").ptTimeSelect();' %>
   <%= javascript_tag '$("#from_date").datepicker({ dateFormat: "dd/mm/yy" }); $("#to_date").datepicker({ dateFormat: "dd/mm/yy" });' %>
+  <%= javascript_tag '$("#product-table").dataTable({
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers"
+  });' %>
 </div>
 <br style="clear: both;" /><br />
 

@@ -293,11 +293,12 @@ input[type=checkbox].error {
 
 #product-table {
   float: left;
-  width: 60%;
+  width: 100%;
 }
 
 #schedule_form {
   float: left;
+  margin-left: 30px;
 }
 
 #schedule_form #unschedule {
@@ -314,5 +315,9 @@ input[type=checkbox].error {
 
 #schedule_form #from_date, #schedule_form #to_date {
   width: 130px;
+}
+
+#product-table th {
+  cursor: pointer;
 }
 
