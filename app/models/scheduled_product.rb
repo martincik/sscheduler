@@ -5,7 +5,7 @@ class ScheduledProduct < ActiveRecord::Base
   def self.schedule(products_ids, from, to, store)
     for_update = ScheduledProduct.find(:all, :conditions => ["shopify_id IN (:ids)", { :ids => products_ids }])
     for_update.collect!{|p| p.shopify_id.to_s}
-    for_create = products_ids - for_update
+    for_create = products_ids.collect { |e| e.to_s } - for_update
     for_create.each { |id|  ScheduledProduct.create({:shopify_id => id, :from_time => from.to_formatted_s(:db),
                       :to_time => to.to_formatted_s(:db), :store_id => store.id }) }
     ScheduledProduct.update_all("from_time='#{from.to_formatted_s(:db)}', to_time='#{to.to_formatted_s(:db)}'",

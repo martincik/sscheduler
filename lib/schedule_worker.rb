@@ -8,7 +8,6 @@ class ScheduleWorker
     Store.find(:all).each do |store|
       shopify_session = ShopifyAPI::Session.new(store.shop, store.t, store.params)
       ShopifyAPI::Base.site = shopify_session.site
-
       to_publish_ids = ScheduledProduct.find(:all, :conditions => ["from_time <= :time_now AND to_time > :time_now
         AND store_id=:store_id AND published=false",
         {:time_now => time_now, :store_id => store.id}]).collect { |e| e.shopify_id }

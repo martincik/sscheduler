@@ -6,6 +6,18 @@ login_params = {:shop => "zdenal.myshopify.com",
   :t => "dcbb2917e7ee3920e874a417d56531ae"
 }
 
+class ShopifyProduct
+  attr_accessor :id, :published_at, :title
+
+  def initialize; end;
+
+  def save
+    return true
+  end
+
+end
+
+
 Factory.define :store do |s|
   s.shop 'zdenal.myshopify.com'
   s.t 'dcbb2917e7ee3920e874a417d56531ae'
@@ -18,5 +30,9 @@ Factory.define :scheduled_product do |s|
   s.from_time 2.hours.ago.to_s(:db)
   s.to_time((Time.now+2.hours).to_s(:db))
   s.published false
+end
+
+Factory.define :shopify_product do |p|
+  p.published_at nil
 end
 
