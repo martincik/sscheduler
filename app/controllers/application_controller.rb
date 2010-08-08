@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def set_time_zone
     if session[:store_id]
-      Time.zone = Store.find(session[:store]).time_zone
+      Time.zone = Store.find(session[:store_id]).time_zone
     end
   end
 
