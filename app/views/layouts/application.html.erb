@@ -9,20 +9,36 @@
 
   <%= stylesheet_link_tag 'application', 'jquery.ptTimeSelect',
         'jquery-ui-1.8.2.custom', 'icons', 'demo_table' %>
+  <%= javascript_include_tag :defaults %>
   <%= javascript_include_tag 'jquery-1.4.2.min.js', 'jquery.ptTimeSelect',
-      'jquery-ui-1.8.2.custom.min', 'application', 'dataTable' %>
+      'jquery-ui-1.8.2.custom.min', 'application', 'dataTable', 'aqFloater' %>
+
 </head>
 
 <body>
-
+    <div id='ajax-indicator'>&nbsp;</div>
     <div id="header">
       <h1><%= link_to 'SScheduler', '/' %></h1>
       <p id="login-link">
         <% if current_shop %>
             <span class="note">current shop</span> <%= link_to current_shop.url, "http://#{current_shop.url}", :class => 'shop_name' %> <span class="note">|</span>
             <%= link_to 'logout', :controller => "login", :action => 'logout' %>
+            <% form_for :store, :html => {:id => 'store_form'} do |f|-%>
+              <label style="color: #FFFFFF; font-weight: 600;">Time zone:&nbsp;</label>
+              <%= f.time_zone_select :time_zone, nil, :default => current_store.time_zone %>
+              <script type="text/javascript">
+                $('#store_time_zone').change(function() {
+                  $.post("/home/set_store_time_zone", $('#store_form').serialize(),
+                    function(data){
+                      $('#main').html(data);
+                    }
+                  );
+                });
+              </script>
+            <% end -%>
         <% end %>
       </p>
+      <br />
     </div>
 
   <div id="container" class="clearfix">

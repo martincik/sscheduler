@@ -33,11 +33,20 @@ class HomeController < ApplicationController
     redirect_to :action => "index"
   end
 
-  def test
+  def testik
     ShopifyAPI::Product.find(:all).each do |product|
       product.published_at = nil
       product.save
     end
+  end
+
+  def set_store_time_zone
+    @store = Store.find(session[:store_id])
+    @store.time_zone = params[:store][:time_zone]
+    @store.save
+    set_time_zone
+    index
+    render :action => 'index', :layout => false
   end
 
 end

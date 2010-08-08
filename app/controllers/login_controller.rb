@@ -26,7 +26,7 @@ class LoginController < ApplicationController
     if shopify_session.valid?
       session[:shopify] = shopify_session
       flash[:notice] = "Logged in to shopify store."
-      #session[:store] = Store.find_or_create_by_shop(params[:shop], {:t => params[:t], :params => params})
+      session[:store_id] = Store.find_or_create_by_shop(params[:shop], {:t => params[:t], :params => params}).id
       redirect_to return_address
       session[:return_to] = nil
     else

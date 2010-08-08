@@ -9,5 +9,9 @@ module ApplicationHelper
     end
   end
 
+  def current_store
+    Store.find(session[:store_id])
+  end
+
 end
 

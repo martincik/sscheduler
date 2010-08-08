@@ -321,3 +321,10 @@ input[type=checkbox].error {
   cursor: pointer;
 }
 
+#ajax-indicator {
+  background: url("../images/ajax-loader.gif") no-repeat scroll 0 0 transparent;
+  width: 220px;
+  height: 20px;
+  display: none;
+}
+

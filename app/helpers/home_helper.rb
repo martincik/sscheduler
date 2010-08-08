@@ -19,9 +19,8 @@ module HomeHelper
       f_date, t_date = params[:from_date].split('/'), params[:to_date].split('/')
       f_time, t_time = params[:from_time].split(':'), params[:to_time].split(':')
 
-      @from = Time.mktime(f_date[2], f_date[1], f_date[0], f_time[0], f_time[1])
-      @to = Time.mktime(t_date[2], t_date[1], t_date[0], t_time[0], t_time[1])
-
+      @from = Time.zone.parse("#{f_date[2]}-#{f_date[1]}-#{f_date[0]} #{f_time[0]}:#{f_time[1]}")
+      @to = Time.zone.parse("#{t_date[2]}-#{t_date[1]}-#{t_date[0]} #{t_time[0]}:#{t_time[1]}")
       if @from >= @to
         flash[:error] += '<br />Set Scheduled is incorrect. Please check it.'
         @checked_dates = 'error'

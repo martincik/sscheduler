@@ -6,17 +6,18 @@ module ShopifyLoginProtection
         # session[:shopify] set in LoginController#finalize
         ShopifyAPI::Base.site = session[:shopify].site
         yield
-      ensure 
+      ensure
         ShopifyAPI::Base.site = nil
       end
-    else            
+    else
       session[:return_to] = request.request_uri
-      redirect_to :controller => 'login'      
+      redirect_to :controller => 'login'
     end
   end
-  
+
   def current_shop
     session[:shopify]
   end
-    
+
 end
+

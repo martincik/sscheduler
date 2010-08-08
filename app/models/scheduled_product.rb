@@ -6,9 +6,9 @@ class ScheduledProduct < ActiveRecord::Base
     for_update = ScheduledProduct.find(:all, :conditions => ["shopify_id IN (:ids)", { :ids => products_ids }])
     for_update.collect!{|p| p.shopify_id.to_s}
     for_create = products_ids.collect { |e| e.to_s } - for_update
-    for_create.each { |id|  ScheduledProduct.create({:shopify_id => id, :from_time => from.to_formatted_s(:db),
-                      :to_time => to.to_formatted_s(:db), :store_id => store.id }) }
-    ScheduledProduct.update_all("from_time='#{from.to_formatted_s(:db)}', to_time='#{to.to_formatted_s(:db)}'",
+    for_create.each { |id|  ScheduledProduct.create({:shopify_id => id, :from_time => from,
+                      :to_time => to, :store_id => store.id }) }
+    ScheduledProduct.update_all({:from_time => from, :to_time => to},
                                   ["shopify_id IN (:ids)", {:ids => for_update}])
     scheduled_products = ScheduledProduct.find(:all).inject({}) do |hash, p|
       hash.merge({p.shopify_id.to_s => p})

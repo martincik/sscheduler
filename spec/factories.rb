@@ -22,13 +22,14 @@ Factory.define :store do |s|
   s.shop 'zdenal.myshopify.com'
   s.t 'dcbb2917e7ee3920e874a417d56531ae'
   s.params login_params
+  s.time_zone 'UTC'
 end
 
 Factory.define :scheduled_product do |s|
   s.shopify_id '111'
   s.store_id {|s| s.association(:store)}
-  s.from_time 2.hours.ago.to_s(:db)
-  s.to_time((Time.now+2.hours).to_s(:db))
+  s.from_time (Time.now - 2.hours).to_s(:db)
+  s.to_time((Time.now+8.hours).to_s(:db))
   s.published false
 end
 

@@ -46,11 +46,21 @@ describe ScheduleWorker do
 
   it "should unschedule product(delete him from ScheduletProducts) and hidden him on shopify, because of to time" do
     ScheduledProduct.schedule(@products_ids, @from, @to, @store)
-    ScheduledProduct.schedule([1], @from, (Time.now - 5.minutes), @store)
+    ScheduledProduct.schedule([1], @from, (Time.zone.now - 5.minutes), @store)
     lambda{ ScheduleWorker.perform }.should change{ ScheduledProduct.find(:all).count }.by(-1)
     ShopifyAPI::Product.find(:all).select { |e| e.id == 1 }.first.published_at.should be_false
     ShopifyAPI::Product.find(:all).select { |e| e.id == 2 }.first.published_at.should be_true
     ShopifyAPI::Product.find(:all).select { |e| e.id == 3 }.first.published_at.should be_true
+  end
+
+  it "should not publish products, because of Time zone" do
+    ScheduledProduct.schedule(@products_ids, @from, @to, @store)
+    ScheduledProduct.find(:all).collect { |product| product.published }.should_not include(true)
+    ShopifyAPI::Product.find(:all).collect { |product| product.published_at }.should == [nil,nil,nil]
+    Store.find(:first).update_attribute('time_zone','Samoa')
+    ScheduleWorker.perform
+    ScheduledProduct.find(:all).collect { |product| product.published }.should_not include(true)
+    ShopifyAPI::Product.find(:all).collect { |product| product.published_at }.should == [nil,nil,nil]
   end
 
 end
