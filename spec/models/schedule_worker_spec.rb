@@ -53,14 +53,30 @@ describe ScheduleWorker do
     ShopifyAPI::Product.find(:all).select { |e| e.id == 3 }.first.published_at.should be_true
   end
 
-  it "should not publish products, because of Time zone" do
+  it "should not publish products, because of Time zone (Fiji + 12h)" do
+    Time.zone = 'Fiji'
+    f, t = (Time.now - 1.hours), (Time.now + 8.hours)
+    @from = Time.zone.parse("#{f.hour}:#{f.min}")
+    @to = Time.zone.parse("#{t.hour}:#{t.min}") + 2.days
     ScheduledProduct.schedule(@products_ids, @from, @to, @store)
     ScheduledProduct.find(:all).collect { |product| product.published }.should_not include(true)
     ShopifyAPI::Product.find(:all).collect { |product| product.published_at }.should == [nil,nil,nil]
-    Store.find(:first).update_attribute('time_zone','Samoa')
     ScheduleWorker.perform
     ScheduledProduct.find(:all).collect { |product| product.published }.should_not include(true)
     ShopifyAPI::Product.find(:all).collect { |product| product.published_at }.should == [nil,nil,nil]
+  end
+
+  it "should publish products in Time zone Kabul (+4:30)" do
+    Time.zone = 'Kabul'
+    f, t = (Time.now - 1.hours), (Time.now + 8.hours)
+    @from = Time.zone.parse("#{f.year}-#{f.month}-#{f.day} #{f.hour}:#{f.min}")
+    @to = Time.zone.parse("#{t.hour}:#{t.min}") + 2.days
+    ScheduledProduct.schedule(@products_ids, @from, @to, @store)
+    ScheduledProduct.find(:all).collect { |product| product.published }.should_not include(true)
+    ShopifyAPI::Product.find(:all).collect { |product| product.published_at }.should == [nil,nil,nil]
+    ScheduleWorker.perform
+    ScheduledProduct.find(:all).collect { |product| product.published }.should_not include(false)
+    ShopifyAPI::Product.find(:all).collect { |product| product.published_at }.should_not include(nil)
   end
 
 end

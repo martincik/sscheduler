@@ -4,7 +4,8 @@ require 'shopify_api'
 class ScheduleWorker
 
   def self.perform
-    time_now = Time.now
+    Time.zone = 'UTC'
+    time_now = Time.now.utc
     Store.find(:all).each do |store|
       shopify_session = ShopifyAPI::Session.new(store.shop, store.t, store.params)
       ShopifyAPI::Base.site = shopify_session.site
