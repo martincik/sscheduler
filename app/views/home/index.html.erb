@@ -1,6 +1,6 @@
 <h2>List of products on Your shopify</h2>
 
-<% form_tag url_for(:action => 'set_schedule') do -%>
+<% form_tag set_schedule_home_path do -%>
 
 <table cellpadding="1" cellspacing="1" id="product-table">
   <thead>
@@ -26,8 +26,8 @@
       <td><%= link_to product.title, "http://#{current_shop.url}/admin/products/#{product.id}" %></td>
       <td style="text-align: center;"><%= product.price_range %></td>
       <td><%= product.product_type %></td>
-      <td style="text-align: center;"><%= @scheduled_products[product.id.to_s].nil? ? '---' : hdatetime(@scheduled_products[product.id.to_s].from_time) %></td>
-      <td style="text-align: center;"><%= @scheduled_products[product.id.to_s].nil? ? '---' : hdatetime(@scheduled_products[product.id.to_s].to_time) %></td>
+      <td style="text-align: center;"><%= hdatetime(product.from_time) %></td>
+      <td style="text-align: center;"><%= hdatetime(product.to_time) %></td>
       <td style="text-align: center;"><%= is_ok_tag product.published_at %></td>
     </tr>
     <% end -%>

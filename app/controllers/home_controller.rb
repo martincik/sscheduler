@@ -11,43 +11,74 @@ class HomeController < ApplicationController
 
   def index
     @products_ids = []
-    @products = ShopifyAPI::Product.find(:all)
-    @scheduled_products = ScheduledProduct.find(:all).inject({}) do |hash, p|
-      hash.merge({p.shopify_id.to_s => p})
+    get_products
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @products }
     end
   end
 
   def set_schedule
-    index
-    @from_time, @to_time, @from_date, @to_date = params[:from_time], params[:to_time], params[:from_date], params[:to_date]
-    @products_ids = params[:products].keys unless params[:products].nil?
-    # Check if schedule parameters are valid - check_schedule is in home_helper
-    render :action => "index" and return unless check_schedule
-
+    params[:products].nil? ? @products_ids = [] : @products_ids = params[:products].keys
     if params[:commit] == "schedule"
-      @scheduled_products = ScheduledProduct::schedule(@products_ids, @from, @to, session[:store])
+      schedule
     else
-      ScheduledProduct::unschedule(@products, @products_ids)
-    end
-    flash[:notice] = 'Scheduling was successfully.'
-    redirect_to :action => "index"
-  end
-
-  def testik
-    ShopifyAPI::Product.find(:all).each do |product|
-      product.published_at = nil
-      product.save
+      unschedule
     end
   end
 
   def set_store_time_zone
-    @store = Store.find(session[:store_id])
+    @store = current_store
     @store.time_zone = params[:store][:time_zone]
     @store.save
     set_time_zone
-    index
-    render :action => 'index', :layout => false
+    respond_to do |format|
+      format.html do
+        @products_ids = []
+        get_products
+        render :action => 'index', :layout => false
+      end
+      format.xml  { head :ok }
+    end
   end
+
+  private
+
+  def get_products
+    s_products = ShopifyAPI::Product.find(:all)
+    @products = ScheduledProduct.patch_shopify_products(s_products)
+  end
+
+  def schedule
+    @from_time, @to_time, @from_date, @to_date = params[:from_time], params[:to_time], params[:from_date], params[:to_date]
+    respond_to do |format|
+      if check_products and check_times
+        ScheduledProduct::schedule(@products_ids, @from, @to, session[:store_id])
+        flash[:notice] = "Scheduling was successfully"
+        format.html { redirect_to :action => "index" }
+        format.xml { render :xml => @products, :notice => flash[:notice]}
+      else
+        get_products
+        format.xml { render :xml => flash }
+        format.html { render :action => "index" }
+      end
+    end
+
+  end
+
+  def unschedule
+    respond_to do |format|
+      if check_products
+        ScheduledProduct::unschedule(@products_ids)
+        flash[:notice] = 'Unscheduling was successfully.'
+        format.xml { render :xml => @products, :notice => flash[:notice]}
+      else
+        format.xml { render :xml => flash }
+      end
+      format.html { redirect_to home_index_path }
+    end
+  end
+
 
 end
 

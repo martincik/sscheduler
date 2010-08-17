@@ -13,5 +13,16 @@ module ApplicationHelper
     Store.find(session[:store_id])
   end
 
+  def render_flash(flash)
+    if flash[:error]
+      tag = content_tag(:div, flash[:error], {:id => 'flasherrors'})
+      flash[:error] = nil
+    elsif flash[:notice]
+      tag = content_tag(:div, flash[:notice], {:id => 'flashnotices'})
+      flash[:notice] = nil
+    end
+    tag
+  end
+
 end
 

@@ -22,7 +22,7 @@
       <p id="login-link">
         <% if current_shop %>
             <span class="note">current shop</span> <%= link_to current_shop.url, "http://#{current_shop.url}", :class => 'shop_name' %> <span class="note">|</span>
-            <%= link_to 'logout', :controller => "login", :action => 'logout' %>
+            <%= link_to 'logout', logout_login_path %>
             <% form_for :store, :html => {:id => 'store_form'} do |f|-%>
               <label style="color: #FFFFFF; font-weight: 600;">Time zone:&nbsp;</label>
               <%= f.time_zone_select :time_zone, nil, :default => current_store.time_zone %>
@@ -44,13 +44,11 @@
   <div id="container" class="clearfix">
 
     <ul id="tabs">
-      <%= tab :index, {:controller => 'home'}, :label => 'Home' %>
-      <%= tab :design, {:controller => 'home', :action => 'design'}, :label => 'Design Help' %>
+      <%= tab :index, home_index_path, :label => 'Home' %>
     </ul>
 
     <!-- Flash error & notice-->
-    <% if flash[:error] %> <div id="flasherrors"><%= flash[:error] %></div><% end %>
-    <% if flash[:notice] %><div id="flashnotices"><%= flash[:notice] %></div><% end %>
+    <%= render_flash flash %>
 
     <!-- begin div.main-->
     <div id="main">

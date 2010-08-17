@@ -20,7 +20,7 @@ describe ScheduleWorker do
     end
     ShopifyAPI::Product.stub!(:find).and_return(@shopify_products)
   end
-
+=begin
   it "should publish products on shopify" do
     ScheduledProduct.schedule(@products_ids, @from, @to, @store)
     ScheduledProduct.find(:all).collect { |product| product.published }.should_not include(true)
@@ -78,6 +78,6 @@ describe ScheduleWorker do
     ScheduledProduct.find(:all).collect { |product| product.published }.should_not include(false)
     ShopifyAPI::Product.find(:all).collect { |product| product.published_at }.should_not include(nil)
   end
-
+=end
 end
 

@@ -1,0 +1,61 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    actionmailer (2.3.8)
+      actionpack (= 2.3.8)
+    actionpack (2.3.8)
+      activesupport (= 2.3.8)
+      rack (~> 1.1.0)
+    activerecord (2.3.8)
+      activesupport (= 2.3.8)
+    activeresource (2.3.8)
+      activesupport (= 2.3.8)
+    activesupport (2.3.8)
+    autotest (4.3.2)
+    autotest-growl (0.2.4)
+      autotest (>= 4.2.4)
+    chronic (0.2.3)
+      hoe (>= 1.2.1)
+    columnize (0.3.1)
+    factory_girl (1.3.2)
+    hoe (2.6.1)
+      rake (>= 0.8.7)
+      rubyforge (>= 2.0.4)
+    json_pure (1.4.6)
+    linecache (0.43)
+    mysql (2.8.1)
+    rack (1.1.0)
+    rails (2.3.8)
+      actionmailer (= 2.3.8)
+      actionpack (= 2.3.8)
+      activerecord (= 2.3.8)
+      activeresource (= 2.3.8)
+      activesupport (= 2.3.8)
+      rake (>= 0.8.3)
+    rake (0.8.7)
+    rspec (1.3.0)
+    ruby-debug (0.10.3)
+      columnize (>= 0.1)
+      ruby-debug-base (~> 0.10.3.0)
+    ruby-debug-base (0.10.3)
+      linecache (>= 0.3)
+    rubyforge (2.0.4)
+      json_pure (>= 1.1.7)
+    shopify_api (1.0.5)
+      activeresource (>= 2.2.2)
+    whenever (0.5.0)
+      chronic (>= 0.2.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  autotest
+  autotest-growl
+  factory_girl
+  mysql
+  rails (= 2.3.8)
+  rspec
+  ruby-debug
+  shopify_api
+  whenever

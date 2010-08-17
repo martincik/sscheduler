@@ -1,14 +1,17 @@
 module HomeHelper
 
-  def check_schedule
-    check = true
-    flash.now[:error] = ""
+  def check_products
     if @products_ids.blank?
       flash[:error] = "Please select any products."
       @checked_products = 'error'
-      check = false
+      return false
     end
+    return true
+  end
 
+  def check_times
+    check = true
+    flash[:error] = '' if flash[:error].nil?
     if params[:commit] == "schedule"
       if params[:from_time].blank? || params[:from_date].blank? || params[:to_time].blank? || params[:to_date].blank?
         flash[:error] += "<br />Please choose 'Scheduled from' and 'Scheduled to'. These fields are required."

@@ -33,8 +33,9 @@ describe ScheduledProduct do
   it "should unschedule product" do
     ScheduledProduct.schedule(@products_ids, @from, @to, @store)
     ScheduledProduct.find(:all).should have(3).items
+    ShopifyAPI::Product.stub!(:put).and_return(:true)
     shopify_products = []
-    lambda{ScheduledProduct.unschedule(shopify_products, ['11','22'])}.should change{ScheduledProduct.find(:all).count}.from(3).to(1)
+    lambda{ScheduledProduct.unschedule(['11','22'])}.should change{ScheduledProduct.find(:all).count}.from(3).to(1)
   end
 
 end
