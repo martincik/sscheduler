@@ -15,7 +15,7 @@ Cron jobs are set in file 'config/schedule.rb'.
 
 When I put command for create some model with DateTime, DB save it in UTC format.
 Then when I put command find for the same model with the same DateTime, SQL request
-have DateTime in setted time zone.
+have DateTime in setted time zone. In environment.rb I have set config.time_zone = 'Prague'.
 
     time = Time.now (time zone is setted for example to 'Prague' and return 2010-08-18 14:38:17)
 
