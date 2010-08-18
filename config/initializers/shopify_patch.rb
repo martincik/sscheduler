@@ -11,6 +11,10 @@ module ShopifyAPI
     @@logger
   end
 
+  def ShopifyAPI.add_log(msg, error)
+    @@logger.error "[#{Time.now.to_s(:eu_datetime)}] ERROR: #{error.to_s}, REQ:#{msg}"
+  end
+
   class Session
     def initialize(url, token = nil, params = nil)
       self.url, self.token = url, token

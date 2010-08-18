@@ -69,8 +69,11 @@ class HomeController < ApplicationController
   def unschedule
     respond_to do |format|
       if check_products
-        ScheduledProduct::unschedule(@products_ids)
-        flash[:notice] = 'Unscheduling was successfully.'
+        if ScheduledProduct::unschedule(@products_ids)
+          flash[:notice] = 'Unscheduling was successfully.'
+        else
+          flash[:error] = 'We are sorry, but something went wrong.'
+        end
         format.xml { render :xml => @products, :notice => flash[:notice]}
       else
         format.xml { render :xml => flash }

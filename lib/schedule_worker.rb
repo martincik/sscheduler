@@ -4,8 +4,7 @@ require 'shopify_api'
 class ScheduleWorker
 
   def self.perform
-    Time.zone = 'UTC'
-    time_now = Time.now.utc
+    time_now = Time.now
     Store.find(:all).each do |store|
       shopify_session = ShopifyAPI::Session.new(store.shop, store.t, store.params)
       ShopifyAPI::Base.site = shopify_session.site
@@ -22,19 +21,19 @@ class ScheduleWorker
   def self.get_to_hide(time_now, store_id)
     ScheduledProduct.find(:all,
         :conditions => ["from_time > :time_now AND store_id=:store_id AND published=true",
-        {:time_now => time_now, :store_id => store_id}]).collect { |e| e.shopify_id }
+        {:time_now => time_now.utc, :store_id => store_id}]).collect { |e| e.shopify_id }
   end
 
   def self.get_to_publish(time_now, store_id)
     ScheduledProduct.find(:all, :conditions => ["from_time <= :time_now AND to_time > :time_now
         AND store_id=:store_id AND published=false",
-        {:time_now => time_now, :store_id => store_id}]).collect { |e| e.shopify_id }
+        {:time_now => time_now.utc, :store_id => store_id}]).collect { |e| e.shopify_id }
   end
 
   def self.get_to_delete(time_now, store_id)
     ScheduledProduct.find(:all,
         :conditions => ["to_time <= :time_now AND store_id=:store_id",
-        {:time_now => time_now, :store_id => store_id}]).collect { |e| e.shopify_id }
+        {:time_now => time_now.utc, :store_id => store_id}]).collect { |e| e.shopify_id }
   end
 
   def self.publish(_ShopifyAPI, to_publish_ids, time_now=Time.now.utc)
@@ -44,7 +43,7 @@ class ScheduleWorker
       return true
     rescue Exception => e
       req = _ShopifyAPI::Product.custom_method_collection_url('#{id}', :product => {:published_at => time_now})
-      ShopifyAPI::logger.add("Error"){req}
+      _ShopifyAPI::add_log(req, e)
       return false
     end
   end
@@ -57,7 +56,7 @@ class ScheduleWorker
       return true
     rescue Exception => e
       req = _ShopifyAPI::Product.custom_method_collection_url('#{id}', :product => {:published_at => nil})
-      ShopifyAPI::logger.add("Error"){req}
+      _ShopifyAPI::add_log(req, e)
       return false
     end
   end

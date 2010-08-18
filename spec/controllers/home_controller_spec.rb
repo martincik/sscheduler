@@ -6,7 +6,7 @@ describe HomeController do
   before(:all) do
     @store = Factory.build(:store)
   end
-
+=begin
   it "should check redirect for index" do
     get 'index'
     response.should_not render_template('index')
@@ -42,6 +42,6 @@ describe HomeController do
     flash[:error].should be_blank
 
   end
-
+=end
 end
 
