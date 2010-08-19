@@ -30,7 +30,7 @@ class HomeController < ApplicationController
   def set_store_time_zone
     @store = current_store
     @store.time_zone = params[:store][:time_zone]
-    @store.save
+    @store.save!
     set_time_zone
     respond_to do |format|
       format.html do
