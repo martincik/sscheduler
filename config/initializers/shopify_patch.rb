@@ -31,6 +31,7 @@ module ShopifyAPI
 
   class Product
     attr_accessor :from_time, :to_time
+
   end
 
 end

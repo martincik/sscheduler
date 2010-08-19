@@ -12,5 +12,6 @@ group :test do
   gem 'autotest'
   gem 'autotest-growl'
   gem 'factory_girl'
+  gem 'rcov'
 end
 

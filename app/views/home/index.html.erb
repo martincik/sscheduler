@@ -26,8 +26,8 @@
       <td><%= link_to product.title, "http://#{current_shop.url}/admin/products/#{product.id}" %></td>
       <td style="text-align: center;"><%= product.price_range %></td>
       <td><%= product.product_type %></td>
-      <td style="text-align: center;"><%= hdatetime(product.from_time) %></td>
-      <td style="text-align: center;"><%= hdatetime(product.to_time) %></td>
+      <td style="text-align: center;"><%= product.from_time.to_s %></td>
+      <td style="text-align: center;"><%= product.to_time.to_s %></td>
       <td style="text-align: center;"><%= is_ok_tag product.published_at %></td>
     </tr>
     <% end -%>
@@ -49,7 +49,7 @@
   <%= submit_tag 'unschedule', {:id => 'unschedule'} %>
   <%= submit_tag 'schedule', {:id => 'schedule'} %>
   <%= javascript_tag '$("#from_time").ptTimeSelect(); $("#to_time").ptTimeSelect();' %>
-  <%= javascript_tag '$("#from_date").datepicker({ dateFormat: "dd/mm/yy" }); $("#to_date").datepicker({ dateFormat: "dd/mm/yy" });' %>
+  <%= javascript_tag '$("#from_date").datepicker({ dateFormat: "dd.mm.yy" }); $("#to_date").datepicker({ dateFormat: "dd.mm.yy" });' %>
   <%= javascript_tag '$("#product-table").dataTable({
         "bJQueryUI": true,
         "sPaginationType": "full_numbers"

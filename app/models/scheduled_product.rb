@@ -22,7 +22,7 @@ class ScheduledProduct < ActiveRecord::Base
       p.from_time = sp.from_time
       p.to_time = sp.to_time
     end
-    products
+    products * 100
   end
 
 end

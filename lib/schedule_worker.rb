@@ -21,22 +21,22 @@ class ScheduleWorker
   def self.get_to_hide(time_now, store_id)
     ScheduledProduct.find(:all,
         :conditions => ["from_time > :time_now AND store_id=:store_id AND published=true",
-        {:time_now => time_now.utc, :store_id => store_id}]).collect { |e| e.shopify_id }
+        {:time_now => time_now, :store_id => store_id}]).collect { |e| e.shopify_id }
   end
 
   def self.get_to_publish(time_now, store_id)
     ScheduledProduct.find(:all, :conditions => ["from_time <= :time_now AND to_time > :time_now
         AND store_id=:store_id AND published=false",
-        {:time_now => time_now.utc, :store_id => store_id}]).collect { |e| e.shopify_id }
+        {:time_now => time_now, :store_id => store_id}]).collect { |e| e.shopify_id }
   end
 
   def self.get_to_delete(time_now, store_id)
     ScheduledProduct.find(:all,
         :conditions => ["to_time <= :time_now AND store_id=:store_id",
-        {:time_now => time_now.utc, :store_id => store_id}]).collect { |e| e.shopify_id }
+        {:time_now => time_now, :store_id => store_id}]).collect { |e| e.shopify_id }
   end
 
-  def self.publish(_ShopifyAPI, to_publish_ids, time_now=Time.now.utc)
+  def self.publish(_ShopifyAPI, to_publish_ids, time_now=Time.now)
     begin
       to_publish_ids.each { |id| ShopifyAPI::Product.put(id, :product => {:published_at => time_now}) }
       ScheduledProduct.update_all("published=true",["shopify_id IN (:ids)", {:ids => to_publish_ids}])
