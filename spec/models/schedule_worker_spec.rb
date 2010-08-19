@@ -16,13 +16,13 @@ describe ScheduleWorker do
       @shopify_products << Factory.build(:shopify_product, :id => id)
     end
     ShopifyAPI::Product.stub!(:find).and_return(@shopify_products)
-    ShopifyAPI::Product.stub!(:put).with(anything(), an_instance_of(Hash)).and_return { |id, hash|
+    ShopifyAPI::Product.stub!(:put).with(anything(), an_instance_of(Hash)).and_return do |id, hash|
       if hash[:product][:published_at].nil?
         @shopify_products.find{|s| s.id == id}.published_at = nil
       else
         @shopify_products.find{|s| s.id == id}.published_at = Time.now
       end
-    }
+    end
   end
 
   it "should not find products to publish (with testing time zones)" do
@@ -31,8 +31,6 @@ describe ScheduleWorker do
     @to = Time.zone.now + 2.days
     time_now = Time.now
     ScheduledProduct.schedule(@products_ids, @from, @to, @store.id)
-    debugger
-    puts ''
     ScheduleWorker::get_to_publish(time_now, @store.id).should be_blank
   end
 =begin
