@@ -31,7 +31,7 @@ describe ScheduleWorker do
     @to = Time.zone.now + 2.days
     time_now = Time.now
     ScheduledProduct.schedule(@products_ids, @from, @to, @store.id)
-    ScheduleWorker::get_to_publish(time_now, @store.id).should be_blank
+    ScheduledProduct.to_publish(time_now, @store.id).should be_blank
   end
 =begin
   it "should find products to publish (with testing time zones)" do

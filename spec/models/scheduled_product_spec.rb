@@ -35,7 +35,9 @@ describe ScheduledProduct do
     ScheduledProduct.find(:all).should have(3).items
     ShopifyAPI::Product.stub!(:put).and_return(:true)
     shopify_products = []
-    lambda{ScheduledProduct.unschedule(['11','22'])}.should change{ScheduledProduct.find(:all).count}.from(3).to(1)
+    lambda { 
+      ScheduledProduct.unschedule(['11','22'])}.should change{ScheduledProduct.find(:all).count
+    }.from(3).to(1)
   end
 
 end
