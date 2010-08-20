@@ -28,16 +28,16 @@ class ScheduledProduct < ActiveRecord::Base
       delete_all(["shopify_id IN (:ids)", {:ids => ids}])
     end
 
-    def existing_ids(products_ids)
-      connection.select_values("SELECT shopify_id FROM scheduled_products WHERE shopify_id IN (#{products_ids.join(',')})")
+    def existing_ids(store, products_ids)
+      connection.select_values("SELECT shopify_id FROM scheduled_products WHERE shopify_id IN (#{products_ids.join(',')}) AND store_id=#{store.id}")
     end
 
-    def schedule(products_ids, from, to, store_id)
-      for_update = existing_ids(products_ids)
+    def schedule(store, products_ids, from, to)
+      for_update = existing_ids(store, products_ids)
       for_create = products_ids - for_update
       attributes = for_create.collect do |id|
         {
-          :shopify_id => id, :from_time => from, :to_time => to, :store_id => store_id
+          :shopify_id => id, :from_time => from, :to_time => to, :store_id => store.id
         }
       end
       create(attributes)

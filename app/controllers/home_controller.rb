@@ -53,7 +53,7 @@ class HomeController < ApplicationController
     @from_time, @to_time, @from_date, @to_date = params[:from_time], params[:to_time], params[:from_date], params[:to_date]
     respond_to do |format|
       if check_products and check_times
-        ScheduledProduct::schedule(@products_ids, @from, @to, session[:store_id])
+        ScheduledProduct::schedule(current_store, @products_ids, @from, @to)
         flash[:notice] = "Scheduling was successfully"
         format.html { redirect_to :action => "index" }
         format.xml { render :xml => @products, :notice => flash[:notice]}
