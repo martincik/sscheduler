@@ -69,7 +69,7 @@ class HomeController < ApplicationController
   def unschedule
     respond_to do |format|
       if check_products
-        if ScheduledProduct::unschedule(@products_ids)
+        if ScheduledProduct::unschedule(current_store, @products_ids)
           flash[:notice] = 'Unscheduling was successfully.'
         else
           flash[:error] = 'We are sorry, but something went wrong.'

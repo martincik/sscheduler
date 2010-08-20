@@ -49,7 +49,7 @@
   <%= submit_tag 'unschedule', {:id => 'unschedule'} %>
   <%= submit_tag 'schedule', {:id => 'schedule'} %>
   <%= javascript_tag '$("#from_time").ptTimeSelect(); $("#to_time").ptTimeSelect();' %>
-  <%= javascript_tag '$("#from_date").datepicker({ dateFormat: "dd.mm.yy" }); $("#to_date").datepicker({ dateFormat: "dd.mm.yy" });' %>
+  <%= javascript_tag '$("#from_date").datepicker({ dateFormat: "mm/dd/yy" }); $("#to_date").datepicker({ dateFormat: "mm/dd/yy" });' %>
   <%= javascript_tag '$("#product-table").dataTable({
         "bJQueryUI": true,
         "sPaginationType": "full_numbers"

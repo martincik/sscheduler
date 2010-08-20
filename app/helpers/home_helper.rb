@@ -20,8 +20,8 @@ module HomeHelper
         return false
       end
 
-      @from = Time.zone.parse "#{params[:from_date]} #{params[:from_time]}"
-      @to = Time.zone.parse "#{params[:to_date]} #{params[:to_time]}"
+      @from = Time.zone.parse("#{params[:from_date]} #{params[:from_time]}")
+      @to = Time.zone.parse("#{params[:to_date]} #{params[:to_time]}")
 
       if @from >= @to
         flash[:error] += '<br />Set Scheduled is incorrect. Please check it.'
