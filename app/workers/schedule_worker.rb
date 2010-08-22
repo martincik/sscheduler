@@ -15,7 +15,7 @@ class ScheduleWorker
     end
 
     def publish(store, to_publish_ids)
-      change_publish(to_publish_ids, Time.now) do |ids|
+      change_publish(to_publish_ids, Time.zone.now) do |ids|
         store.scheduled_products.publish_all_with_ids(ids)
       end
     end
@@ -55,6 +55,8 @@ class ScheduleWorker
       end
 
       def shopify_ids(collection)
+        debugger
+        puts ''
         collection.map(&:shopify_id)
       end
 

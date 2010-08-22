@@ -29,7 +29,9 @@ class ScheduledProduct < ActiveRecord::Base
     end
 
     def existing_ids(store, products_ids)
-      connection.select_values("SELECT shopify_id FROM scheduled_products WHERE shopify_id IN (#{products_ids.join(',')}) AND store_id=#{store.id}")
+      # return ids like string. Have to use map anyway
+      # connection.select_values("SELECT shopify_id FROM scheduled_products WHERE shopify_id IN (#{products_ids.join(',')}) AND store_id=#{store.id}")
+      ScheduledProduct.find(:all, :conditions => ["shopify_id IN (:ids)", {:ids => products_ids}]).map(&:shopify_id)
     end
 
     def schedule(store, products_ids, from, to)
@@ -41,7 +43,7 @@ class ScheduledProduct < ActiveRecord::Base
         }
       end
       create(attributes)
-      update_all({:from_time => from, :to_time => to},
+      update_all({:from_time => from, :to_time => to, :published => false},
                                     ["shopify_id IN (:ids)", {:ids => for_update}])
     end
 
