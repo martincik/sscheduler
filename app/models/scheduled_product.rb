@@ -46,7 +46,7 @@ class ScheduledProduct < ActiveRecord::Base
     end
 
     def unschedule(store, products_ids)
-      store.scheduled_products.delete_all_with_ids(products_ids)
+      store.scheduled_products.unpublish_all_with_ids(products_ids)
     end
 
     def patch_shopify_products(products)

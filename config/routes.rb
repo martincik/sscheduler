@@ -1,7 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'home'
 
-  map.resources :home, :collection => {:set_schedule => [:any], :set_store_time_zone => [:any]}
+  map.resources :home, :collection => {:set_schedule => [:any], :set_store_time_zone => [:any],
+    :welcome => [:any]
+  }
 
   map.resources :login, :collection => {:logout => [:get], :authenticate => [:any],
     :finalize => [:any]

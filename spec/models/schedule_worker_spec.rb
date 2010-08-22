@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ScheduleWorker do
-
+=begin
   before(:all) do
     Store.delete_all
     ScheduledProduct.delete_all
@@ -33,7 +33,7 @@ describe ScheduleWorker do
     ScheduledProduct.schedule(@products_ids, @from, @to, @store.id)
     ScheduledProduct.to_publish(time_now, @store.id).should be_blank
   end
-=begin
+
   it "should find products to publish (with testing time zones)" do
     Time.zone = 'Fiji'
     @from = Time.zone.now - 2.seconds
