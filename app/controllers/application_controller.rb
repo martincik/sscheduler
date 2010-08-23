@@ -8,12 +8,13 @@ class ApplicationController < ActionController::Base
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
+
   before_filter :set_time_zone
 
+  # Have to set Time zone before each action, before it probably rewrite zone from
+  # config.time_zone in environment.rb
   def set_time_zone
-    if session[:store_id]
-      Time.zone = Store.find(session[:store_id]).time_zone
-    end
+    Time.zone = session[:time_zone]
   end
 
 end

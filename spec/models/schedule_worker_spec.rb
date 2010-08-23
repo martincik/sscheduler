@@ -55,6 +55,8 @@ describe ScheduleWorker do
   it "should not set session and ShopifyAPI" do
     @store.params[:shop] = 'badstore.myshopify.com'
     ScheduleWorker.send(:setup_session, @store).should be_false
+    # Had to chenge it back, because it change it in other tests (like home_controller_spec.rb)
+    @store.params[:shop] = "zdenal.myshopify.com"
   end
 
   it "should get collection of shopify_ids" do

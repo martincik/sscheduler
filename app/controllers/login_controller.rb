@@ -1,4 +1,7 @@
 class LoginController < ApplicationController
+
+  skip_before_filter :set_time_zone
+
   def index
     # Ask user for their #{shop}.myshopify.com address
 
@@ -26,7 +29,7 @@ class LoginController < ApplicationController
     if shopify_session.valid?
       session[:shopify] = shopify_session
       flash[:notice] = "Logged in to shopify store."
-      session[:store_id] = Store.find_or_create_by_shop(params[:shop], {:t => params[:t], :params => params}).id
+      set_store_and_time_zone
       redirect_to return_address
       session[:return_to] = nil
     else
@@ -46,6 +49,16 @@ class LoginController < ApplicationController
 
   def return_address
     session[:return_to] || root_url
+  end
+
+  def set_store_and_time_zone
+    ShopifyAPI::Base.site = session[:shopify].site
+    store = Store.find_or_create_by_shop(params[:shop], {:t => params[:t], :params => params})
+    session[:store_id] = store.id
+    shopify_time_zone = current_shop.shop.timezone.gsub(/^\(GMT[+-]\d{2}:\d{2}\)\ /,'')
+    store.update_attributes({:time_zone => shopify_time_zone}) if store.time_zone != shopify_time_zone
+    session[:time_zone] = store.time_zone
+    Time.zone = store.time_zone
   end
 end
 

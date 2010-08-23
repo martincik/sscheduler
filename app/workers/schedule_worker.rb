@@ -44,7 +44,7 @@ class ScheduleWorker
         passed_ids = ids
         ids.each do |id|
           begin
-            request = ShopifyAPI::Product.custom_method_collection_url('#{id}', :product => {:published_at => publish})
+            request = ShopifyAPI::Product.custom_method_collection_url("#{id}", :product => {:published_at => publish})
             ShopifyAPI::Product.put(id, :product => {:published_at => publish})
             ShopifyMatters::info_log(request)
           rescue ActiveResource::ResourceNotFound => e

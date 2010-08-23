@@ -23,19 +23,7 @@
         <% if current_shop %>
             <span class="note">current shop</span> <%= link_to current_shop.url, "http://#{current_shop.url}", :class => 'shop_name' %> <span class="note">|</span>
             <%= link_to 'logout', logout_login_path %>
-            <% form_for :store, :html => {:id => 'store_form'} do |f|-%>
-              <label style="color: #FFFFFF; font-weight: 600;">Time zone:&nbsp;</label>
-              <%= f.time_zone_select :time_zone, nil, :default => current_store.time_zone %>
-              <script type="text/javascript">
-                $('#store_time_zone').change(function() {
-                  $.post("/home/set_store_time_zone", $('#store_form').serialize(),
-                    function(data){
-                      $('#main').html(data);
-                    }
-                  );
-                });
-              </script>
-            <% end -%>
+            <label style="color: #FFFFFF; font-weight: 600;">Time zone:&nbsp;<%= current_store.time_zone %></label>
         <% end %>
       </p>
       <br />

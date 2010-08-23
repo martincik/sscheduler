@@ -92,13 +92,5 @@ describe HomeController do
     flash[:error].should be_blank
   end
 
-  it "should change time zone for store" do
-    lambda { post 'set_store_time_zone', :store => {:time_zone => 'UTC' } }.should change {
-      Store.first.time_zone
-    }.from('Prague').to('UTC')
-    response.should render_template("index")
-
-  end
-
 end
 

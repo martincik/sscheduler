@@ -27,21 +27,6 @@ class HomeController < ApplicationController
     end
   end
 
-  def set_store_time_zone
-    @store = current_store
-    @store.time_zone = params[:store][:time_zone]
-    @store.save!
-    set_time_zone
-    respond_to do |format|
-      format.html do
-        @products_ids = []
-        get_products
-        render :action => 'index', :layout => false
-      end
-      format.xml  { head :ok }
-    end
-  end
-
   private
 
   def get_products
