@@ -32,10 +32,10 @@ class ScheduledProduct < ActiveRecord::Base
       # ScheduledProduct.all(:conditions => ["shopify_id IN (:ids)", {:ids => products_ids}]).map(&:shopify_id)
       
       # It's much faster with only SELECT and stor_id for security resons.
-      connection.select_values(<<-eos
+      connection.select_values("
         SELECT shopify_id FROM scheduled_products 
         WHERE shopify_id IN (#{products_ids.join(',')}) AND store_id=#{store.id}
-      eos).map(&:to_i)
+      ").map(&:to_i)
     end
 
     def schedule(store, products_ids, from, to)
