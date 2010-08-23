@@ -64,9 +64,9 @@ describe ScheduledProduct, "Test model methods" do
     ScheduledProduct.schedule(@store, @products_ids, @from, @to)
     products = ScheduledProduct.all
     products.should have(3).items
-    products.collect { |product| product.from_time }.uniq.should have(1).items
-    products.collect { |product| product.to_time }.uniq.should have(1).items
-    products.collect { |product| product.published }.uniq.should have(1).items
+    products.map(&:from_time).uniq.should have(1).items
+    products.map(&:to_time).uniq.should have(1).items
+    products.map(&:published).should_not include(true)
   end
 
   it "should update scheduled product" do
@@ -149,7 +149,7 @@ describe ScheduledProduct, "Test time zones" do
     @from = Time.zone.now + 15.seconds
     @to = Time.zone.now + 2.days
     ScheduledProduct.schedule(@store, @products_ids, @from, @to)
-    # And when I am in Prag in time what is in Athens I should find products to publish,
+    # And when I am in Prag in that time what is in Athens I should find products to publish,
     # because in this time is in Athens 1 hour more
     Time.zone = 'Prague'
     time_now = (Time.zone.parse @from.to_s)+15.seconds
@@ -163,7 +163,7 @@ describe ScheduledProduct, "Test time zones" do
     @from = Time.zone.now - 15.seconds
     @to = Time.zone.now + 2.days
     ScheduledProduct.schedule(@store, @products_ids, @from, @to)
-    # And when I am in Prag in time what is in London I should find products to publish,
+    # And when I am in Prag in that time what is in London I should find products to publish,
     # because in this time is in London 1 hour less
     Time.zone = 'Prague'
     time_now = (Time.zone.parse @from.to_s)
