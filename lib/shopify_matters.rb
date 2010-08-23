@@ -1,3 +1,5 @@
+
+# ?? What about inheritance from normal logger ??
 class ShopifyMatters
   @@logger = nil
 
