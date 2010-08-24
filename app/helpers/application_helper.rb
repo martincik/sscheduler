@@ -2,11 +2,8 @@
 module ApplicationHelper
 
   def is_ok_tag(value)
-    if value.blank? || value == false
-      content_tag(:a, '&nbsp;', {:class => 'isok-false'})
-    else
-      content_tag(:a, '&nbsp;', {:class => 'isok-true'})
-    end
+    value_class = value.present? && value == true
+    content_tag(:a, '&nbsp;', :class => "isok-" + value_class)
   end
 
   def current_store
@@ -15,13 +12,13 @@ module ApplicationHelper
 
   def render_flash(flash)
     if flash[:error]
-      tag = content_tag(:div, flash[:error], {:id => 'flasherrors'})
-      flash[:error] = nil
+      flash_key = 'error'
     elsif flash[:notice]
-      tag = content_tag(:div, flash[:notice], {:id => 'flashnotices'})
-      flash[:notice] = nil
+      flash_key = 'notice'
     end
-    tag
+    # ?? Why are u not using flash.now ??
+    # ?? Why u care only about :error and :notice and not others ??
+    content_tag(:div, flash.now[flash_key.to_sym], :id => "flash#{flash_key}s")
   end
 
 end

@@ -41,16 +41,16 @@ class ScheduleWorker
       end
 
       def change_publish(ids, store, publish=nil, &block)
-        passed_ids = ids
+        passed_ids = []
         ids.each do |id|
           begin
             request = ShopifyAPI::Product.custom_method_collection_url("#{id}", :product => {:published_at => publish})
             ShopifyAPI::Product.put(id, :product => {:published_at => publish})
             ShopifyMatters::info_log(request)
+            passed_ids << id
           rescue ActiveResource::ResourceNotFound => e
             store.scheduled_products.find_by_shopify_id(id).delete
             ShopifyMatters::error_log(request, e)
-            passed_ids.delete(id)
           #rescue ActiveResource::ResourceConflict, ActiveResource::ResourceInvalid
           rescue Exception => e
             ShopifyMatters::error_log(request, e)
