@@ -30,10 +30,10 @@ class ScheduledProduct < ActiveRecord::Base
       # return ids like string. Have to use map anyway
       # connection.select_values("SELECT shopify_id FROM scheduled_products WHERE shopify_id IN (#{products_ids.join(',')}) AND store_id=#{store.id}")
       # ScheduledProduct.all(:conditions => ["shopify_id IN (:ids)", {:ids => products_ids}]).map(&:shopify_id)
-      
+
       # It's much faster with only SELECT and stor_id for security resons.
       connection.select_values("
-        SELECT shopify_id FROM scheduled_products 
+        SELECT shopify_id FROM scheduled_products
         WHERE shopify_id IN (#{products_ids.join(',')}) AND store_id=#{store.id}
       ").map(&:to_i)
     end
@@ -42,11 +42,12 @@ class ScheduledProduct < ActiveRecord::Base
       for_update = existing_ids(store, products_ids)
       for_create = products_ids - for_update
       attributes = for_create.collect do |id|
-        { :shopify_id => id, :from_time => from, 
+        { :shopify_id => id, :from_time => from,
           :to_time => to, :store_id => store.id }
       end
-      
-      # ?? We don't care about returning values ?? Pica prace!!
+
+      # Question: ?? We don't care about returning values ?? Pica prace!!
+      # Answer: Yes we care, sorry :(
       create(attributes)
       update_all({:from_time => from, :to_time => to, :published => false},
         ["shopify_id IN (:ids)", {:ids => for_update}])

@@ -18,7 +18,7 @@ module ApplicationHelper
     end
     # ?? Why are u not using flash.now ??
     # ?? Why u care only about :error and :notice and not others ??
-    content_tag(:div, flash.now[flash_key.to_sym], :id => "flash#{flash_key}s")
+    content_tag(:div, flash.now[flash_key.to_sym], :id => "flash#{flash_key}s") unless flash_key.nil?
   end
 
 end
