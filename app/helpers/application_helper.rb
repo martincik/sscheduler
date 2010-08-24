@@ -3,7 +3,7 @@ module ApplicationHelper
 
   def is_ok_tag(value)
     value_class = value.present? && value == true
-    content_tag(:a, '&nbsp;', :class => "isok-" + value_class)
+    content_tag(:a, '&nbsp;', :class => "isok-" + value_class.to_s)
   end
 
   def current_store
