@@ -32,49 +32,49 @@ describe HomeController do
 
     # Without params
     post 'set_schedule', :commit => 'schedule'
-    flash[:error].should_not be_blank
+    response.flash[:error].should_not be_blank
     response.should_not be_redirect
 
     # Without time
     post 'set_schedule', :products => {'111' => '1'}, :commit => 'schedule'
-    flash[:error].should_not be_blank
+    response.flash[:error].should_not be_blank
     response.should_not be_redirect
 
     # Without products
     post 'set_schedule', :from_time => "1:00", :to_time => "1:00",
       :from_date => Date.today.to_s, :to_date => Date.today.to_s,
       :commit => 'schedule'
-    flash[:error].should_not be_blank
+    response.flash[:error].should_not be_blank
     response.should_not be_redirect
 
     # The same from and to
     post 'set_schedule', :from_time => "1:00", :to_time => "1:00",
       :from_date => Date.today.to_s, :to_date => Date.today.to_s,
       :products => {'111' => '1'}, :commit => 'schedule'
-    flash[:error].should_not be_blank
+    response.flash[:error].should_not be_blank
     response.should_not be_redirect
 
     # Without to_time param
     post 'set_schedule', :from_time => "1:00", :commit => 'schedule',
       :from_date => Date.today.to_s, :to_date => Date.today.to_s,
       :products => {'111' => '1'}
-    flash[:error].should_not be_blank
+    response.flash[:error].should_not be_blank
     response.should_not be_redirect
 
     # Bad time setting from_time > to_time
     post 'set_schedule', :from_time => "2:00", :to_time => "1:00",
       :from_date => Date.today.to_s, :to_date => Date.today.to_s,
       :products => {'111' => '1'}, :commit => 'schedule'
-    flash[:notice].should be_blank
-    flash[:error].should_not be_blank
+    response.flash[:notice].should be_blank
+    response.flash[:error].should_not be_blank
     response.should_not be_redirect
 
     # Correct time
     post 'set_schedule', :from_time => "1:00", :to_time => "2:00",
       :from_date => Date.today.to_s, :to_date => Date.today.to_s,
       :products => {'111' => '1'}, :commit => 'schedule'
-    flash[:notice].should_not be_blank
-    flash[:error].should be_blank
+    response.flash[:notice].should_not be_blank
+    response.flash[:error].should be_blank
     response.should redirect_to(:action => 'index')
 
   end
@@ -83,13 +83,13 @@ describe HomeController do
     ScheduledProduct.stub!(:unschedule)
     # Without products
     post 'set_schedule', :commit => 'unschedule'
-    flash[:error].should_not be_blank
-    flash[:notice].should be_blank
+    response.flash[:error].should_not be_blank
+    response.flash[:notice].should be_blank
 
     # With products
     post 'set_schedule', :products => {'111' => '1'}, :commit => 'unschedule'
-    flash[:notice].should_not be_blank
-    flash[:error].should be_blank
+    response.flash[:notice].should_not be_blank
+    response.flash[:error].should be_blank
   end
 
 end
