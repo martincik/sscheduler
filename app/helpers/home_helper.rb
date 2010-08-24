@@ -10,12 +10,12 @@ module HomeHelper
   end
 
   def check_times
-    check = true
+
     flash.now[:error] = '' if flash.now[:error].nil?
 
     if params[:commit] == "schedule"
       if params[:from_time].blank? || params[:from_date].blank? || params[:to_time].blank? || params[:to_date].blank?
-        flash.now[:error] += "<br />Please choose 'Scheduled from' and 'Scheduled to'. These fields are required."
+        flash.now[:error] += "Please choose 'Scheduled from' and 'Scheduled to'. These fields are required."
         @checked_dates = 'error'
         return false
       end
@@ -24,13 +24,13 @@ module HomeHelper
       @to = Time.zone.parse("#{params[:to_date]} #{params[:to_time]}")
 
       if @from >= @to
-        flash.now[:error] += '<br />Set Scheduled is incorrect. Please check it.'
+        flash.now[:error] += 'Set Scheduled is incorrect. Please check it.'
         @checked_dates = 'error'
-        check = false
+        return false
       end
     end
 
-    return check
+    return true
   end
 
 end

@@ -35,7 +35,7 @@ class ScheduleWorker
           return true
         rescue RuntimeError => e
           msg = "Bad store's params. Store id: #{store.id}, shop: #{store.shop}."
-          ShopifyMatters::error_log(msg, e)
+          Shopify.logger.error(msg, e)
           return false
         end
       end
@@ -46,14 +46,14 @@ class ScheduleWorker
           begin
             request = ShopifyAPI::Product.custom_method_collection_url("#{id}", :product => {:published_at => publish})
             ShopifyAPI::Product.put(id, :product => {:published_at => publish})
-            ShopifyMatters::info_log(request)
+            Shopify.logger.info(request)
             passed_ids << id
           rescue ActiveResource::ResourceNotFound => e
             store.scheduled_products.find_by_shopify_id(id).delete
-            ShopifyMatters::error_log(request, e)
+            Shopify.logger.error(request, e)
           #rescue ActiveResource::ResourceConflict, ActiveResource::ResourceInvalid
           rescue Exception => e
-            ShopifyMatters::error_log(request, e)
+            Shopify.logger.error(request, e)
             raise e
           end
         end

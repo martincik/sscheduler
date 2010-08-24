@@ -32,7 +32,7 @@ describe ScheduleWorker do
   end
 
   it "should publish shopify products and log it" do
-    ShopifyMatters.should_receive(:info_log).exactly(3).times
+    Shopify.logger.should_receive(:info).exactly(3).times
     @shopify_products.map(&:published_at).include?(nil).should be_true
     ScheduledProduct.all.map(&:published).include?(true).should_not be_true
     ScheduleWorker.publish(@store, @products_ids)
@@ -94,7 +94,7 @@ describe ScheduleWorker do
     ShopifyAPI::Product.should_receive(:put).once.with(3, an_instance_of(Hash)).and_raise(
       ActiveResource::ResourceNotFound.new(mock('err', :code => '404'))
     )
-    ShopifyMatters.should_receive(:error_log).once
+    Shopify.logger.should_receive(:error).once
     ScheduleWorker.publish(@store, @products_ids)
     ScheduledProduct.all.map(&:shopify_id).should == [1,2]
   end
@@ -103,7 +103,7 @@ describe ScheduleWorker do
     ShopifyAPI::Product.should_receive(:put).once.with(2, an_instance_of(Hash)).and_raise(
       ActiveResource::ResourceConflict.new(mock('err', :code => '409'))
     )
-    ShopifyMatters.should_receive(:error_log).once
+    Shopify.logger.should_receive(:error).once
     lambda { ScheduleWorker.unpublish(@store, @products_ids) }.should raise_error(ActiveResource::ResourceConflict)
   end
 

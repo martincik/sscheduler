@@ -3,7 +3,7 @@ class ScheduledProduct < ActiveRecord::Base
   belongs_to :store
 
   # Validations
-  validates_presence_of :shopify_id
+  validates_presence_of :shopify_id, :from_time, :to_time
 
   # Scopes
   named_scope :to_publish, lambda { |time|
@@ -39,8 +39,7 @@ class ScheduledProduct < ActiveRecord::Base
     end
 
     def schedule(store, products_ids, from, to)
-      for_update = existing_ids(store, products_ids)
-      for_create = products_ids - for_update
+      for_create, for_update = devide_by_exist(store, products_ids)
       attributes = for_create.collect do |id|
         { :shopify_id => id, :from_time => from,
           :to_time => to, :store_id => store.id }
@@ -48,13 +47,21 @@ class ScheduledProduct < ActiveRecord::Base
 
       # Question: ?? We don't care about returning values ?? Pica prace!!
       # Answer: Yes we care, sorry :(
-      create(attributes)
-      update_all({:from_time => from, :to_time => to, :published => false},
-        ["shopify_id IN (:ids)", {:ids => for_update}])
+      transaction do
+        create!(attributes)
+        update_all({:from_time => from, :to_time => to, :published => false},
+          ["shopify_id IN (:ids)", {:ids => for_update}]) unless for_update.blank?
+      end
     end
 
     def unschedule(store, products_ids)
       store.scheduled_products.unpublish_all_with_ids(products_ids)
+    end
+
+    def devide_by_exist(store, products_ids)
+      for_update = existing_ids(store, products_ids)
+      for_create = products_ids - for_update
+      return [for_create,for_update]
     end
 
     def patch_shopify_products(products)

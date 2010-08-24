@@ -58,6 +58,12 @@ describe ScheduledProduct, "Test model methods" do
     ScheduledProduct.existing_ids(@store, [44,55]).should be_blank
   end
 
+  it "should devide products for create and update" do
+    for_create, for_update = ScheduledProduct.devide_by_exist(@store, [11,22,44])
+    for_create.should == [44]
+    for_update.should == [11,22]
+  end
+
   it "should schedule products" do
     ScheduledProduct.delete_all
     ScheduledProduct.all.should be_blank
@@ -103,6 +109,41 @@ describe ScheduledProduct, "Test model methods" do
     lambda { ScheduledProduct.patch_shopify_products(@shopify_products) }.should change {
       @shopify_products.map(&:from_time).include? nil
     }.from(true).to(false)
+  end
+
+end
+
+describe ScheduledProduct, "Test transactions" do
+
+  before(:all) do
+    Store.delete_all
+    ScheduledProduct.delete_all
+    @store = Factory.create(:store)
+    @from, @to = 2.hours.ago, Time.now+1.days
+    @products_ids = [11,22,33]
+  end
+
+  it "should not shedule products, because of error from method update_all (transaction test)" do
+    ScheduledProduct.schedule(@store, [22,33], @from, @to)
+    ScheduledProduct.should_receive(:update_all).and_raise(
+      ActiveRecord::StatementInvalid.new
+    )
+    from = Time.now
+    lambda { ScheduledProduct.schedule(@store, @products_ids, from, @to) }.should raise_error(ActiveRecord::StatementInvalid)
+    ScheduledProduct.all.should have(2).items
+    ScheduledProduct.find_all_by_from_time(from).should be_blank
+    ScheduledProduct.find_all_by_from_time(@from).should have(2).items
+  end
+
+  it "should not shedule products, because of error from method create (transaction test)" do
+    ScheduledProduct.stub!(:schedule).and_return do
+      # Missing shopify_id
+      ScheduledProduct.create!({:from_time => Time.now})
+    end
+    ScheduledProduct.delete_all :shopify_id => 11
+    lambda { ScheduledProduct.schedule(@store, @products_ids, @from, @to) }.should raise_error(ActiveRecord::RecordInvalid)
+    ScheduledProduct.all.should have(0).items
+    ScheduledProduct.find_by_from_time(@from).should be_nil
   end
 
 end
