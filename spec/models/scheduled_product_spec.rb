@@ -1,5 +1,14 @@
 require 'spec_helper'
 
+describe ScheduledProduct, "Test validations and associations" do
+  subject{ @scheduled_products = ScheduledProduct.new }
+  it{ should validate_presence_of :shopify_id }
+  it{ should validate_presence_of :store_id }
+  it{ should validate_presence_of :from_time }
+  it{ should validate_presence_of :to_time }
+  it{ should belong_to :store }
+end
+
 describe ScheduledProduct, "Test model methods" do
 
   before(:all) do

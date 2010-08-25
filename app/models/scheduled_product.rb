@@ -3,7 +3,7 @@ class ScheduledProduct < ActiveRecord::Base
   belongs_to :store
 
   # Validations
-  validates_presence_of :shopify_id, :from_time, :to_time
+  validates_presence_of :shopify_id, :from_time, :to_time, :store_id
 
   # Scopes
   named_scope :to_publish, lambda { |time|

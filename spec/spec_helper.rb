@@ -55,3 +55,24 @@ Spec::Runner.configure do |config|
   # For more information take a look at Spec::Runner::Configuration and Spec::Runner
 end
 
+def set_test_parameters
+  lambda {
+    before(:all) do
+      Store.delete_all
+      ScheduledProduct.delete_all
+      @store = Factory.create(:store)
+      @shopify_products = []
+      (1..3).each do |i|
+        @shopify_products << Factory.build(:shopify_product, :id => i)
+        Factory.create(:scheduled_product, :shopify_id => i)
+      end
+    end
+
+    before(:each) do
+      session[:store_id] = @store.id
+      session[:shopify] = ShopifyAPI::Session.new(@store.shop, @store.t, @store.params)
+      ShopifyAPI::Product.stub!(:find).and_return(@shopify_products)
+    end
+  }
+end
+
