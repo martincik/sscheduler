@@ -11,11 +11,19 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_time_zone
 
-  # Have to set Time zone before each action, before it probably rewrite zone from
-  # config.time_zone in environment.rb
-  def set_time_zone
-    Time.zone = session[:time_zone]
-  end
+  private
+
+    # Have to set Time zone before each action, before it probably rewrite zone from
+    # config.time_zone in environment.rb
+    def set_time_zone
+      Time.zone = session[:time_zone]
+    end
+
+    def get_shopify_products
+      @products_ids ||= []
+      s_products = ShopifyAPI::Product.find(:all)
+      @products = ScheduledProduct.patch_shopify_products(s_products)
+    end
 
 end
 

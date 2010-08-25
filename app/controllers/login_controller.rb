@@ -4,10 +4,9 @@ class LoginController < ApplicationController
 
   def index
     # Ask user for their #{shop}.myshopify.com address
-
     # If the #{shop}.myshopify.com address is already provided in the URL, just skip to #authenticate
     if params[:shop].present?
-      redirect_to :controller => 'login', :action => "authenticate", :shop => params[:shop]
+      redirect_to authenticate_path, :shop => params[:shop]
     end
   end
 
@@ -34,7 +33,7 @@ class LoginController < ApplicationController
       session[:return_to] = nil
     else
       flash[:error] = "Could not log in to Shopify store."
-      redirect_to :action => 'index'
+      redirect_to login_path
     end
   end
 
@@ -42,7 +41,7 @@ class LoginController < ApplicationController
     session[:shopify] = nil
     flash[:notice] = "Successfully logged out."
 
-    redirect_to :action => 'index'
+    redirect_to login_path
   end
 
   protected

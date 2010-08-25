@@ -21,7 +21,7 @@ end
 Factory.define :store do |s|
   s.shop 'zdenal.myshopify.com'
   s.t 'dcbb2917e7ee3920e874a417d56531ae'
-  s.params login_params
+  s.params login_params.clone
   s.time_zone 'Prague'
 end
 

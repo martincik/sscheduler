@@ -1,14 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
-  map.root :controller => 'home'
 
-  # ?? This ISN'T Restfull ??
-  map.resources :home, :collection => {:set_schedule => [:any], :set_store_time_zone => [:any],
-    :welcome => [:any]
-  }
+  map.root :controller => 'scheduled_products'
 
-  map.resources :login, :collection => {:logout => [:get], :authenticate => [:any],
-    :finalize => [:any]
-  }
+  map.login 'login', :controller => 'login'
+  map.logout 'login/logout', :controller => 'login', :action => 'logout'
+  map.authenticate 'login/authenticate', :controller => 'login', :action => 'authenticate'
+  map.finalize 'login/finalize', :controller => 'login', :action => 'finalize'
+
+  map.resources :scheduled_products
+  map.resource :schedule
 
   # The priority is based upon order of creation: first created -> highest priority.
 

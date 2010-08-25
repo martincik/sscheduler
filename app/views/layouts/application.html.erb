@@ -22,7 +22,7 @@
       <p id="login-link">
         <% if current_shop %>
             <span class="note">current shop</span> <%= link_to current_shop.url, "http://#{current_shop.url}", :class => 'shop_name' %> <span class="note">|</span>
-            <%= link_to 'logout', logout_login_path %>
+            <%= link_to 'logout', logout_path %>
             <label style="color: #FFFFFF; font-weight: 600;">Time zone:&nbsp;<%= current_store.time_zone %></label>
         <% end %>
       </p>
@@ -32,7 +32,7 @@
   <div id="container" class="clearfix">
 
     <ul id="tabs">
-      <%= tab :index, home_index_path, :label => 'Home' %>
+      <%= tab :index, scheduled_products_path, :label => 'Scheduled Products' %>
     </ul>
 
     <!-- Flash error & notice-->

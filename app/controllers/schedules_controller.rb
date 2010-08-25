@@ -1,47 +1,29 @@
-class HomeController < ApplicationController
+class SchedulesController < ApplicationController
 
-  around_filter :shopify_session, :except => 'welcome'
+  include SchedulesHelper
 
-  include HomeHelper
+  around_filter :shopify_session
 
-  def welcome
-    current_host = "#{request.host}#{':' + request.port.to_s if request.port != 80}"
-    @callback_url = "http://#{current_host}/login/finalize"
-  end
-
-  def index
-    get_products
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @products }
-    end
-  end
-
-  def set_schedule
+  def create
     @products_ids = params[:products].try(:keys) || []
     params[:commit] == "schedule" ? schedule : unschedule
   end
 
   private
 
-    def get_products
-      @products_ids ||= []
-      s_products = ShopifyAPI::Product.find(:all)
-      @products = ScheduledProduct.patch_shopify_products(s_products)
-    end
-
     def schedule
       @from_time, @to_time, @from_date, @to_date = params[:from_time], params[:to_time], params[:from_date], params[:to_date]
       respond_to do |format|
-        if check_products and check_times
+        if check_products and check_time_params and check_correct_time
           ScheduledProduct::schedule(current_store, @products_ids, @from, @to)
           flash[:notice] = "Scheduling was successfully"
-          format.html { redirect_to :action => "index" }
+          format.html { redirect_to scheduled_products_path }
           format.xml { render :xml => @products, :notice => flash[:notice]}
         else
-          get_products
+          get_shopify_products
           format.xml { render :xml => flash }
-          format.html { render :action => "index" }
+          # Couldnt use render scheduled_products_path, because it is /scheduled_products and it isnt template.
+          format.html { render :template => 'scheduled_products/index' }
         end
       end
 
@@ -56,7 +38,7 @@ class HomeController < ApplicationController
         else
           format.xml { render :xml => flash }
         end
-        format.html { redirect_to home_index_path }
+        format.html { redirect_to scheduled_products_path }
       end
     end
 
