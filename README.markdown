@@ -17,6 +17,7 @@ Cron jobs are set in file 'config/schedule.rb'.
 
 - shop url:     http://zdenal.myshopify.com/
 - admin url:    https://zdenal.myshopify.com/admin
+
     email:      ladislav.martincik@gmail.com
     password:   sscheduler
 
@@ -24,6 +25,7 @@ Cron jobs are set in file 'config/schedule.rb'.
 It should work.*
 
 - developer url: https://zdenal.myshopify.com/services/partners/auth/login
+
     email:      nevralaz@gmail.com
     password:   sscheduler
 
