@@ -17,15 +17,15 @@ Cron jobs are set in file 'config/schedule.rb'.
 
 - shop url:     http://zdenal.myshopify.com/
 - admin url:    https://zdenal.myshopify.com/admin
- * email:      ladislav.martincik@gmail.com
- * password:   sscheduler
+    email:      ladislav.martincik@gmail.com
+    password:   sscheduler
 
 *If after login You get redirect to developer login page, just put to url again admin url.
 It should work.*
 
 - developer url: https://zdenal.myshopify.com/services/partners/auth/login
- * email:      nevralaz@gmail.com
- * password:   sscheduler
+    email:      nevralaz@gmail.com
+    password:   sscheduler
 
 ### Shopify developer app settings
 In left menu within subsection 'Apps' click on 'sscheduler'. Now You should see
