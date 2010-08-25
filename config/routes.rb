@@ -2,10 +2,12 @@ ActionController::Routing::Routes.draw do |map|
 
   map.root :controller => 'scheduled_products'
 
-  map.login 'login', :controller => 'login'
-  map.logout 'login/logout', :controller => 'login', :action => 'logout'
-  map.authenticate 'login/authenticate', :controller => 'login', :action => 'authenticate'
-  map.finalize 'login/finalize', :controller => 'login', :action => 'finalize'
+  map.with_options :controller => 'login' do |login|
+    login.login 'login'
+    login.logout 'login/logout', :action => 'logout'
+    login.authenticate 'login/authenticate', :action => 'authenticate'
+    login.finalize 'login/finalize', :action => 'finalize'
+  end
 
   map.resources :scheduled_products
   map.resource :schedule
