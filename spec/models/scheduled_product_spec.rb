@@ -1,5 +1,17 @@
 require 'spec_helper'
 
+def set_test_parametters_sp
+  lambda {
+    before(:all) do
+      ScheduledProduct.delete_all
+      Store.delete_all
+      @store = Factory.create(:store)
+      @products_ids = [11,22,33]
+      @from, @to = 2.hours.ago, Time.now+1.days
+    end
+  }
+end
+
 describe ScheduledProduct, "Test validations and associations" do
   subject{ @scheduled_products = ScheduledProduct.new }
   it{ should validate_presence_of :shopify_id }
@@ -11,12 +23,9 @@ end
 
 describe ScheduledProduct, "Test model methods" do
 
+  set_test_parametters_sp.call
+
   before(:all) do
-    ScheduledProduct.delete_all
-    Store.delete_all
-    @store = Factory.create(:store)
-    @from, @to = 2.hours.ago, Time.now+1.days
-    @products_ids = [11,22,33]
     ScheduledProduct.schedule(@store, @products_ids, @from, @to)
   end
 
@@ -124,13 +133,7 @@ end
 
 describe ScheduledProduct, "Test transactions" do
 
-  before(:all) do
-    Store.delete_all
-    ScheduledProduct.delete_all
-    @store = Factory.create(:store)
-    @from, @to = 2.hours.ago, Time.now+1.days
-    @products_ids = [11,22,33]
-  end
+  set_test_parametters_sp.call
 
   it "should not shedule products, because of error from method update_all (transaction test)" do
     ScheduledProduct.schedule(@store, [22,33], @from, @to)
@@ -138,7 +141,9 @@ describe ScheduledProduct, "Test transactions" do
       ActiveRecord::StatementInvalid.new
     )
     from = Time.now
-    lambda { ScheduledProduct.schedule(@store, @products_ids, from, @to) }.should raise_error(ActiveRecord::StatementInvalid)
+    lambda { ScheduledProduct.schedule(@store, @products_ids, from, @to) }.should raise_error(
+      ActiveRecord::StatementInvalid
+    )
     ScheduledProduct.all.should have(2).items
     ScheduledProduct.find_all_by_from_time(from).should be_blank
     ScheduledProduct.find_all_by_from_time(@from).should have(2).items
@@ -150,7 +155,9 @@ describe ScheduledProduct, "Test transactions" do
       ScheduledProduct.create!({:from_time => Time.now})
     end
     ScheduledProduct.delete_all :shopify_id => 11
-    lambda { ScheduledProduct.schedule(@store, @products_ids, @from, @to) }.should raise_error(ActiveRecord::RecordInvalid)
+    lambda { ScheduledProduct.schedule(@store, @products_ids, @from, @to) }.should raise_error(
+      ActiveRecord::RecordInvalid
+    )
     ScheduledProduct.all.should have(0).items
     ScheduledProduct.find_by_from_time(@from).should be_nil
   end
@@ -159,12 +166,7 @@ end
 
 describe ScheduledProduct, "Test time zones" do
 
-  before(:all) do
-    ScheduledProduct.delete_all
-    Store.delete_all
-    @store = Factory.create(:store)
-    @products_ids = [11,22,33]
-  end
+  set_test_parametters_sp.call
 
   it "should not find products to publish 1. case" do
     # I am in Kabul and schedule products with from_time > time now

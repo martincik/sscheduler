@@ -104,7 +104,9 @@ describe ScheduleWorker do
       ActiveResource::ResourceConflict.new(mock('err', :code => '409'))
     )
     Shopify.logger.should_receive(:error).once
-    lambda { ScheduleWorker.unpublish(@store, @products_ids) }.should raise_error(ActiveResource::ResourceConflict)
+    lambda { ScheduleWorker.unpublish(@store, @products_ids) }.should raise_error(
+      ActiveResource::ResourceConflict
+    )
   end
 
 end
