@@ -2,8 +2,20 @@ require 'spec_helper'
 
 describe SchedulesController do
 
-  # in spec_helper
-  set_test_parameters.call
+  before(:all) do
+    Store.delete_all
+    ScheduledProduct.delete_all
+    @store = Factory.create(:store)
+    @shopify_products = (1..3).inject([]) do |s, i|
+      s << ShopifyAPI::Product.new(:id => i)
+    end
+  end
+
+  before(:each) do
+    session[:store_id] = @store.id
+    session[:shopify] = ShopifyAPI::Session.new(@store.shop, @store.t, @store.params)
+    ShopifyAPI::Product.stub!(:find).and_return(@shopify_products)
+  end
 
   it "should check scheduling params for schedule" do
     ScheduledProduct.stub!(:schedule)

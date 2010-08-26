@@ -1,4 +1,3 @@
-#ShopifyAPI::Product.class_eval %q{attr_accessor :from_time, :to_time}
 module ShopifyAPI
 
   class Session
@@ -16,7 +15,19 @@ module ShopifyAPI
   end
 
   class Product
-    attr_accessor :from_time, :to_time
+    def from_time
+      scheduled_product and scheduled_product.from_time
+    end
+
+    def to_time
+      scheduled_product and scheduled_product.to_time
+    end
+    
+    private
+    
+      def scheduled_product
+        @scheduled_product ||= ScheduledProduct.find_by_shopify_id(id)
+      end
   end
 
 end

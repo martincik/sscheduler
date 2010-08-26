@@ -61,10 +61,8 @@ def set_test_parameters
       Store.delete_all
       ScheduledProduct.delete_all
       @store = Factory.create(:store)
-      @shopify_products = []
-      (1..3).each do |i|
-        @shopify_products << Factory.build(:shopify_product, :id => i)
-        Factory.create(:scheduled_product, :shopify_id => i)
+      @shopify_products = (1..3).inject([]) do |s, i|
+        s << ShopifyAPI::Product.new(:id => i)
       end
     end
 

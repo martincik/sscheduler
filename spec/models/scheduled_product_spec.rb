@@ -122,13 +122,6 @@ describe ScheduledProduct, "Test model methods" do
     }
   end
 
-  it "should patch shopify products for from and to time" do
-    @shopify_products = @products_ids.collect { |id| Factory.build(:shopify_product, :id => id) }
-    lambda { ScheduledProduct.patch_shopify_products(@shopify_products) }.should change {
-      @shopify_products.map(&:from_time).include? nil
-    }.from(true).to(false)
-  end
-
 end
 
 describe ScheduledProduct, "Test transactions" do

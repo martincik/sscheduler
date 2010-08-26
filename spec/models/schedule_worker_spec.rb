@@ -11,7 +11,7 @@ describe ScheduleWorker do
     @products_ids = [1,2,3]
     @shopify_products = []
     @products_ids.each do |id|
-      @shopify_products << Factory.build(:shopify_product, :id => id)
+      @shopify_products << ShopifyAPI::Product.new(:id => id)
     end
     ScheduledProduct.schedule(@store, @products_ids, @from, @to)
   end

@@ -64,16 +64,6 @@ class ScheduledProduct < ActiveRecord::Base
       return [for_create,for_update]
     end
 
-    def patch_shopify_products(products)
-      products_ids = products.map(&:id)
-      find(:all, :conditions => ['shopify_id IN (:ids)', {:ids => products_ids}]).each do |sp|
-        p = products.find { |e| e.id == sp.shopify_id }
-        p.from_time = sp.from_time
-        p.to_time = sp.to_time
-      end
-      products
-    end
-
   end # class << self
 
 end

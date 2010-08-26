@@ -21,8 +21,7 @@ class ApplicationController < ActionController::Base
 
     def get_shopify_products
       @products_ids ||= []
-      s_products = ShopifyAPI::Product.find(:all)
-      @products = ScheduledProduct.patch_shopify_products(s_products)
+      @products = ShopifyAPI::Product.find(:all)
     end
 
 end
