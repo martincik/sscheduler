@@ -5,11 +5,10 @@
 	<meta http-equiv="imagetoolbar" content="no" />
 	<meta name="MSSmartTagsPreventParsing" content="true" />
 
-  <title>SScheduler</title>
+  <title>ScheduleApp for Shopify</title>
 
   <%= stylesheet_link_tag 'application', 'jquery.ptTimeSelect',
         'jquery-ui-1.8.2.custom', 'icons', 'demo_table' %>
-  <%= javascript_include_tag :defaults %>
   <%= javascript_include_tag 'jquery-1.4.2.min.js', 'jquery.ptTimeSelect',
       'jquery-ui-1.8.2.custom.min', 'application', 'dataTable', 'aqFloater' %>
 
@@ -18,22 +17,18 @@
 <body>
     <div id='ajax-indicator'>&nbsp;</div>
     <div id="header">
-      <h1><%= link_to 'SScheduler', '/' %></h1>
+      <h1><%= link_to 'ScheduleApp', '/' %></h1>
       <p id="login-link">
         <% if current_shop %>
-            <span class="note">current shop</span> <%= link_to current_shop.url, "http://#{current_shop.url}", :class => 'shop_name' %> <span class="note">|</span>
-            <%= link_to 'logout', logout_path %>
-            <label style="color: #FFFFFF; font-weight: 600;">Time zone:&nbsp;<%= current_store.time_zone %></label>
+          <span class="note">current shop</span> <%= link_to current_shop.url, "http://#{current_shop.url}", :class => 'shop_name' %> <span class="note">|</span>
+          <%= link_to 'logout', logout_path %>
+          <label style="color: #FFFFFF; font-weight: 600;">Time zone:&nbsp;<%= current_store.time_zone %></label>
         <% end %>
       </p>
       <br />
     </div>
 
   <div id="container" class="clearfix">
-
-    <ul id="tabs">
-      <%= tab :index, scheduled_products_path, :label => 'Scheduled Products' %>
-    </ul>
 
     <!-- Flash error & notice-->
     <%= render_flash flash %>

@@ -66,7 +66,6 @@ describe SchedulesController do
     response.flash[:notice].should_not be_blank
     response.flash[:error].should be_blank
     response.should redirect_to(:controller => 'scheduled_products', :action => 'index')
-
   end
 
   it "check scheduling params for unschedule " do

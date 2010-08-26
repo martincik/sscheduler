@@ -6,7 +6,7 @@ module SchedulesHelper
       @checked_products = 'error'
       return false
     end
-    return true
+    true
   end
 
   def check_time_params
@@ -15,7 +15,7 @@ module SchedulesHelper
       @checked_dates = 'error'
       return false
     end
-    return true
+    true
   end
 
   def check_correct_time
@@ -26,7 +26,7 @@ module SchedulesHelper
       @checked_dates = 'error'
       return false
     end
-    return true
+    true
   end
 
 end

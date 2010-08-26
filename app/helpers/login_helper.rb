@@ -1,3 +1,2 @@
-module LoginHelper  
-  
+module LoginHelper
 end

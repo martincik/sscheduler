@@ -1,61 +1,71 @@
-<h2>List of products on Your shopify</h2>
+<h2>List of products on your shopify</h2>
 
 <% form_tag schedule_path do -%>
 
-<table cellpadding="1" cellspacing="1" id="product-table">
-  <thead>
-    <tr>
-      <th>&nbsp;</th>
-      <th>Name</th>
-      <th>Price (<%= current_shop.shop.currency %>)</th>
-      <th>Type</th>
-      <th>Visible from</th>
-      <th>Visible to</th>
-      <th>Published</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @products.each do |product| %>
-    <tr>
-      <td>
-        <input type='checkbox' id="products_<%= product.id %>" name="products[<%= product.id %>]" value="1"
-          <%= "checked=true" if @products_ids.include?(product.id.to_s) %>
-          <%= "class=#{@checked_products}" %>
-        >
-      </td>
-      <td><%= link_to product.title, "http://#{current_shop.url}/admin/products/#{product.id}" %></td>
-      <td style="text-align: center;"><%= product.price_range %></td>
-      <td><%= product.product_type %></td>
-      <td style="text-align: center;"><%= product.from_time.to_s %></td>
-      <td style="text-align: center;"><%= product.to_time.to_s %></td>
-      <td style="text-align: center;"><%= is_ok_tag product.published_at %></td>
-    </tr>
-    <% end -%>
-  </tbody>
-</table>
+  <table cellpadding="0" cellspacing="0" id="product-table">
+    <thead>
+      <tr>
+        <th>&nbsp;</th>
+        <th>Name</th>
+        <th>Price (<%= current_shop.shop.currency %>)</th>
+        <th>Type</th>
+        <th>Visible from</th>
+        <th>Visible to</th>
+        <th>Published</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @products.each do |product| %>
+      <tr>
+        <td>
+          <input type='checkbox' id="products_<%= product.id %>" name="products[<%= product.id %>]" value="1"
+            <%= "checked=true" if @products_ids.include?(product.id.to_s) %>
+            <%= "class=#{@checked_products}" %>
+          >
+        </td>
+        <td><%= link_to product.title, "http://#{current_shop.url}/admin/products/#{product.id}" %></td>
+        <td style="text-align: center;"><%= product.price_range %></td>
+        <td><%= product.product_type %></td>
+        <td style="text-align: center;"><%= product.from_time.to_s %></td>
+        <td style="text-align: center;"><%= product.to_time.to_s %></td>
+        <td style="text-align: center;"><%= is_published(product.published_at) %></td>
+      </tr>
+      <% end -%>
+    </tbody>
+  </table>
 
-<div id="schedule_form">
-  <label>Scheduled from</label>
-  <div>
-    <%= text_field_tag 'from_time', @from_time, {:class => @checked_dates } %>
-    <%= text_field_tag 'from_date', @from_date, {:class => @checked_dates } %>
-  </div>
-  <label>Scheduled to</label>
-  <div>
-    <%= text_field_tag 'to_time', @to_time, {:class => @checked_dates } %>
-    <%= text_field_tag 'to_date', @to_date, {:class => @checked_dates } %>
-  </div>
-  <br />
-  <%= submit_tag 'unschedule', {:id => 'unschedule'} %>
-  <%= submit_tag 'schedule', {:id => 'schedule'} %>
-  <%= javascript_tag '$("#from_time").ptTimeSelect(); $("#to_time").ptTimeSelect();' %>
-  <%= javascript_tag '$("#from_date").datepicker({ dateFormat: "mm/dd/yy" }); $("#to_date").datepicker({ dateFormat: "mm/dd/yy" });' %>
-  <%= javascript_tag '$("#product-table").dataTable({
+  <div id="schedule_form">
+    <label>Scheduled from</label>
+    <div>
+      <%= text_field_tag 'from_time', @from_time, {:class => @checked_dates } %>
+      <%= text_field_tag 'from_date', @from_date, {:class => @checked_dates } %>
+    </div>
+    <label>Scheduled to</label>
+    <div>
+      <%= text_field_tag 'to_time', @to_time, {:class => @checked_dates } %>
+      <%= text_field_tag 'to_date', @to_date, {:class => @checked_dates } %>
+    </div>
+    <br />
+    <%= submit_tag 'unschedule', {:id => 'unschedule'} %>
+    <%= submit_tag 'schedule', {:id => 'schedule'} %>
+    
+    <script type="text/javascript"> 
+    //<![CDATA[
+      $("#from_time").ptTimeSelect(); 
+      $("#to_time").ptTimeSelect();
+      
+      $("#from_date").datepicker({ dateFormat: "mm/dd/yy" }); 
+      $("#to_date").datepicker({ dateFormat: "mm/dd/yy" });
+      
+      $("#product-table").dataTable({
         "bJQueryUI": true,
         "sPaginationType": "full_numbers"
-  });' %>
-</div>
-<br style="clear: both;" /><br />
+      });
+    //]]>
+    </script>    
+  </div>
+
+  <br style="clear: both;" /><br />
 
 <% end -%>
 
