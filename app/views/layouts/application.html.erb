@@ -5,23 +5,24 @@
 	<meta http-equiv="imagetoolbar" content="no" />
 	<meta name="MSSmartTagsPreventParsing" content="true" />
 
-  <title>ScheduleApp for Shopify</title>
+  <title>ScheduleItApp for Shopify</title>
 
-  <%= stylesheet_link_tag 'application', 'jquery.ptTimeSelect',
-        'jquery-ui-1.8.2.custom', 'icons', 'demo_table' %>
+  <%= stylesheet_link_tag 'reset', 'application', 'jquery.ptTimeSelect',
+        'jquery-ui-1.8.2.custom', 'demo_table' %>
   <%= javascript_include_tag 'jquery-1.4.2.min.js', 'jquery.ptTimeSelect',
-      'jquery-ui-1.8.2.custom.min', 'application', 'dataTable', 'aqFloater' %>
+      'jquery-ui-1.8.2.custom.min', 'dataTable', 'application' %>
 
 </head>
 
 <body>
   <div id="header">
-    <h1><%= link_to 'ScheduleApp', '/' %></h1>
-    <label style="color: #FFFFFF; font-weight: 600;">Time zone:&nbsp;<%= current_store.time_zone %></label>
-    <p id="login-link">
+    <h1><%= link_to 'ScheduleApp', root_path %></h1>
+    
+    <p>
       <% if current_shop %>
         <span class="note">current shop</span> <%= link_to current_shop.url, "http://#{current_shop.url}", :class => 'shop_name' %> <span class="note">|</span>
-        <%= link_to 'logout', logout_path %>
+        <%= link_to 'logout', logout_path %><br />
+        <label>Time zone:&nbsp;<%= current_store.time_zone %></label>
       <% end %>
     </p>
   </div>

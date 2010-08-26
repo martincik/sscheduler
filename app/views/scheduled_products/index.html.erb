@@ -1,6 +1,15 @@
-<h2>List of products on your shopify</h2>
-
 <% form_tag schedule_path do -%>
+
+  <div>
+    <label>Schedule from</label>
+    <%= text_field_tag 'from_time', @from_time, {:class => @checked_dates } %>
+    <%= text_field_tag 'from_date', @from_date, {:class => @checked_dates } %>
+    <label>until</label>
+    <%= text_field_tag 'to_time', @to_time, {:class => @checked_dates } %>
+    <%= text_field_tag 'to_date', @to_date, {:class => @checked_dates } %>
+    <%= submit_tag 'schedule', {:id => 'schedule'} %>
+    <%= submit_tag 'unschedule', {:id => 'unschedule'} %>
+  </div>
 
   <table cellpadding="0" cellspacing="0" id="product-table">
     <thead>
@@ -18,54 +27,32 @@
       <% @products.each do |product| %>
       <tr>
         <td>
-          <input type='checkbox' id="products_<%= product.id %>" name="products[<%= product.id %>]" value="1"
-            <%= "checked=true" if @products_ids.include?(product.id.to_s) %>
-            <%= "class=#{@checked_products}" %>
-          >
+          <%= checkbox_with_selection_for_scheduled_product(product, 
+            @products_ids.include?(product.id.to_s), @checked_products) %>
         </td>
         <td><%= link_to product.title, "http://#{current_shop.url}/admin/products/#{product.id}" %></td>
-        <td style="text-align: center;"><%= product.price_range %></td>
+        <td><%= product.price_range %></td>
         <td><%= product.product_type %></td>
-        <td style="text-align: center;"><%= product.from_time.to_s %></td>
-        <td style="text-align: center;"><%= product.to_time.to_s %></td>
-        <td style="text-align: center;"><%= is_published(product.published_at) %></td>
+        <td><%= product.from_time.to_s %></td>
+        <td><%= product.to_time.to_s %></td>
+        <td><%= is_published(product.published_at) %></td>
       </tr>
       <% end -%>
     </tbody>
   </table>
-
-  <div id="schedule_form">
-    <label>Scheduled from</label>
-    <div>
-      <%= text_field_tag 'from_time', @from_time, {:class => @checked_dates } %>
-      <%= text_field_tag 'from_date', @from_date, {:class => @checked_dates } %>
-    </div>
-    <label>Scheduled to</label>
-    <div>
-      <%= text_field_tag 'to_time', @to_time, {:class => @checked_dates } %>
-      <%= text_field_tag 'to_date', @to_date, {:class => @checked_dates } %>
-    </div>
-    <br />
-    <%= submit_tag 'unschedule', {:id => 'unschedule'} %>
-    <%= submit_tag 'schedule', {:id => 'schedule'} %>
-    
-    <script type="text/javascript"> 
-    //<![CDATA[
-      $("#from_time").ptTimeSelect(); 
-      $("#to_time").ptTimeSelect();
-      
-      $("#from_date").datepicker({ dateFormat: "mm/dd/yy" }); 
-      $("#to_date").datepicker({ dateFormat: "mm/dd/yy" });
-      
-      $("#product-table").dataTable({
-        "bJQueryUI": true,
-        "sPaginationType": "full_numbers"
-      });
-    //]]>
-    </script>    
-  </div>
-
-  <br style="clear: both;" /><br />
-
 <% end -%>
 
+<script type="text/javascript"> 
+//<![CDATA[
+  $("#from_time").ptTimeSelect(); 
+  $("#to_time").ptTimeSelect();
+  
+  $("#from_date").datepicker({ dateFormat: "mm/dd/yy" }); 
+  $("#to_date").datepicker({ dateFormat: "mm/dd/yy" });
+  
+  $("#product-table").dataTable({
+    "bJQueryUI": true,
+    "sPaginationType": "full_numbers"
+  });
+//]]>
+</script>
