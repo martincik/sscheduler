@@ -15,21 +15,18 @@
 </head>
 
 <body>
-    <div id='ajax-indicator'>&nbsp;</div>
-    <div id="header">
-      <h1><%= link_to 'ScheduleApp', '/' %></h1>
-      <p id="login-link">
-        <% if current_shop %>
-          <span class="note">current shop</span> <%= link_to current_shop.url, "http://#{current_shop.url}", :class => 'shop_name' %> <span class="note">|</span>
-          <%= link_to 'logout', logout_path %>
-          <label style="color: #FFFFFF; font-weight: 600;">Time zone:&nbsp;<%= current_store.time_zone %></label>
-        <% end %>
-      </p>
-      <br />
-    </div>
+  <div id="header">
+    <h1><%= link_to 'ScheduleApp', '/' %></h1>
+    <label style="color: #FFFFFF; font-weight: 600;">Time zone:&nbsp;<%= current_store.time_zone %></label>
+    <p id="login-link">
+      <% if current_shop %>
+        <span class="note">current shop</span> <%= link_to current_shop.url, "http://#{current_shop.url}", :class => 'shop_name' %> <span class="note">|</span>
+        <%= link_to 'logout', logout_path %>
+      <% end %>
+    </p>
+  </div>
 
   <div id="container" class="clearfix">
-
     <!-- Flash error & notice-->
     <%= render_flash flash %>
 
@@ -38,7 +35,6 @@
       <%= @content_for_layout %>
     </div>
     <!-- end div.main -->
-
   </div>
 
 </body>
