@@ -46,18 +46,23 @@ class LoginController < ApplicationController
 
   protected
 
-  def return_address
-    session[:return_to] || root_url
-  end
+    def return_address
+      session[:return_to] || root_url
+    end
 
-  def set_store_and_time_zone
-    ShopifyAPI::Base.site = session[:shopify].site
-    store = Store.find_or_create_by_shop(params[:shop], {:t => params[:t], :params => params})
-    session[:store_id] = store.id
-    shopify_time_zone = current_shop.shop.timezone.gsub(/^\(GMT[+-]\d{2}:\d{2}\)\ /,'')
-    store.update_attributes({:time_zone => shopify_time_zone}) if store.time_zone != shopify_time_zone
-    session[:time_zone] = store.time_zone
-    Time.zone = store.time_zone
-  end
+    def set_store_and_time_zone
+      ShopifyAPI::Base.site = session[:shopify].site
+      
+      # Store
+      store = Store.find_or_create_by_shop(params[:shop], {:t => params[:t], :params => params})
+      session[:store_id] = store.id
+      
+      # Timezone
+      shopify_time_zone = current_shop.shop.timezone.gsub(/^\(GMT[+-]\d{2}:\d{2}\)\ /,'')
+      if store.time_zone != shopify_time_zone
+        store.update_attributes({:time_zone => shopify_time_zone}) 
+      end
+      Time.zone = session[:time_zone] = store.time_zone
+    end
 end
 
