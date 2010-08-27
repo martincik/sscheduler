@@ -5,7 +5,7 @@
 	<meta http-equiv="imagetoolbar" content="no" />
 	<meta name="MSSmartTagsPreventParsing" content="true" />
 
-  <title>ScheduleItApp for Shopify</title>
+  <title>ScheduleIt for Shopify</title>
 
   <%= stylesheet_link_tag 'reset', 'jquery.ptTimeSelect', 'jquery-ui-1.8.2.custom', 'application' %>
 
@@ -17,29 +17,45 @@
 </head>
 
 <body>
-  <div id="header">
-    <h1><%= link_to 'ScheduleApp', root_path %></h1>
+  <div id="header" class="clearfix">
+    <div class="wrapper">
     
-    <p>
-      <% if current_shop %>
-        <span class="note">current shop</span> <%= link_to current_shop.url, "http://#{current_shop.url}", :class => 'shop_name' %> <span class="note">|</span>
-        <%= link_to 'logout', logout_path %><br />
-        <label>Time zone:&nbsp;<%= current_store.time_zone %></label>
-      <% end %>
-    </p>
+      <div id="logo">
+        <h1><%= link_to 'ScheduleIt', root_path %></h1>
+        <p>easy Shopify product schedules</p>
+      </div>
+      <div id="status">
+        <% if current_shop %>
+          <%= link_to current_shop.url, "http://#{current_shop.url}", :class => 'shop_name' %> ~ <%= current_store.time_zone %> <span class="note">|</span>
+          <%= link_to 'Logout', logout_path %><br />
+        <% end %>
+      </div>
+    
+    </div>
   </div>
 
   <div id="container" class="clearfix">
-    <!-- Flash error & notice-->
+    <div class="wrapper">
+    
     <%= render_flash flash %>
 
-    <!-- begin div.main-->
     <div id="main">
       <%= @content_for_layout %>
     </div>
-    <!-- end div.main -->
+    
+    </div>
   </div>
-
+  
+  <div id="footer">
+    <div class="wrapper">
+    <p>
+      <a href="#">Terms and Conditions</a> | <a href="#">Privacy</a> | <a href="#">About</a>
+    </p>
+    <p>
+      &copy; 2010 Copyright ~ Ladislav Martincik ~ All rights reserved worldwide.
+    </p>
+    </div>
+  </div>
 </body>
 </html>
 
