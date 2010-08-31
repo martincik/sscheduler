@@ -156,7 +156,8 @@ body { background: #eeeeee; }
 #header #logo {
   float: left;
   width: 300px;
-  padding: 20px;
+  padding: 20px 20px 20px 56px;
+  background: transparent url('/images/scheduleitapp_icon.png') left center no-repeat;
 }
 #header #logo a { text-decoration: none; }
 #header #logo h1 {
