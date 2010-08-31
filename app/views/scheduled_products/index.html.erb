@@ -41,8 +41,8 @@
             <td><%= link_to product.title, "http://#{current_shop.url}/admin/products/#{product.id}" %></td>
             <td><%= product.price_range %></td>
             <td><%= product.product_type %></td>
-            <td><%= product.from_time.to_s %></td>
-            <td><%= product.to_time.to_s %></td>
+            <td class="time"><%= product.from_time.to_s %></td>
+            <td class="time"><%= product.to_time.to_s %></td>
             <td><%= is_published(product.published_at) %></td>
           </tr>
           <% end -%>

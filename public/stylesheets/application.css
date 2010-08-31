@@ -294,9 +294,10 @@ body { background: #eeeeee; }
   border-bottom: 1px solid #dddddd;
 }
 #container table tbody td {
-  padding: 5px 0px 5px 0px;
+  padding: 5px 5px 5px 0px;
   border-bottom: 1px solid #e9eef4;
 }
+#container table tbody td.time { white-space: nowrap; }
 #container table tbody tr.last td { border-bottom: 1px solid #dddddd; }
 #container table tfoot td {
   padding: 15px 0px 10px 0px;
