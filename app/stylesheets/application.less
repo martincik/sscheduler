@@ -1,5 +1,6 @@
 @import 'reset';
 @import 'common';
+@import 'awesome_buttons';
 
 body {
   background: #eee;
@@ -63,8 +64,11 @@ body {
     border: 1px solid #bbb;
     
     .box-shadow;
+    .rounded;
     
     .innerbox {
+      .rounded(7px);
+      
       padding: 15px;
       border: 1px solid #ddd;
       background: #fff;
@@ -88,18 +92,57 @@ body {
         background-color: #eaeff5;
         border-bottom: 1px solid #ddd;
       }
-
-      
     }
     tbody {
       td {
         padding: 5px 0px 5px 0px;
         border-bottom: 1px solid #e9eef4;
       }
+      tr.last td {
+        border-bottom: 1px solid #ddd;
+      }
+    }
+    tfoot {
+      td {
+        padding: 15px 0px 10px 0px;
+        background-color: #eaeff5;
+      }
     }
   }
   
 }
+
+#scheduler {
+  label, input {
+    vertical-align: middle;
+  }
+  
+  label,
+  input.time,
+  input.date {
+    font-size: 22px;
+    color: #555;
+    margin: 0 5px;
+  }
+  label {
+    padding: 0px;
+  }
+  input.time,
+  input.date {
+    border: none;
+    border-bottom: 1px dashed #888;
+    background-color: #fcf6e1;
+  }
+  input.time {
+    width: 65px;
+  }
+  input.date {
+    width: 135px;
+  }
+  span.action input {
+    margin-left: 5px;
+  }
+} 
 
 #footer {
   margin-top: 5px;
