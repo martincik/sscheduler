@@ -265,6 +265,18 @@ body { background: #eeeeee; }
   width: 500px;
   text-align: right;
 }
+.flash {
+  padding: 15px;
+  background: #f2f1ed;
+  border: 1px solid #bbbbbb;
+  margin-bottom: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+#flash-notice { background: #d4ffa8; }
+#flash-error { background: #f5a0a4; }
+#flash-warning { background: #ffe17f; }
 #container { padding: 10px; }
 #container .box {
   padding: 5px;

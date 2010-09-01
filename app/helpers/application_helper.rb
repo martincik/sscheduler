@@ -10,14 +10,13 @@ module ApplicationHelper
   end
 
   def render_flash(flash)
-    if flash[:error]
-      flash_key = 'error'
-    elsif flash[:notice]
-      flash_key = 'notice'
-    end
+    flash_key = 'error' if flash[:error]
+    flash_key = 'notice' if flash[:notice]
+    flash_key = 'warning' if flash[:warning]
     
-    unless flash_key.nil?
-      content_tag(:div, flash.now[flash_key.to_sym], :id => "flash#{flash_key}s") 
+    if flash_key
+      content_tag(:div, flash[flash_key.to_sym], :id => "flash-#{flash_key}", 
+        :class => 'flash') 
     end
   end
 

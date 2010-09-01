@@ -10,7 +10,7 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.resources :scheduled_products
-  map.resource :schedule
+  map.resource  :schedule
 
 end
 
