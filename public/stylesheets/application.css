@@ -426,6 +426,7 @@ body { background: #eeeeee url(/images/background.png); }
   -moz-border-radius-topright: 5px;
   padding-right: 10px;
 }
+#container table tbody tr:hover { background-color: #ffffdd; }
 #container table tbody td {
   padding: 5px 5px 5px 0px;
   border-bottom: 1px solid #dddddd;
