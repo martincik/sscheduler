@@ -9,26 +9,47 @@
 
 	<link rel="shortcut icon" href="/favicon.ico">
 
-  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.1/build/reset/reset-min.css"/>   
-  <%= stylesheet_link_tag 'web' %>
+  <%= stylesheet_link_tag 'reset', 'jquery.ptTimeSelect', 'jquery-ui-1.8.2.custom', 'web' %>
 
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-157169-14']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 </head>
 
 <body>
-  <div id="header">
-    <h1>ScheduleIt</h1>
-    <h2>easy product scheduling for Shopify</h2>
+  <div id="header" class="clearfix">
+    <div class="wrapper">
+      <div id="logo">
+        <h1><%= link_to 'ScheduleIt', root_path %></h1>
+        <p>easy product scheduling for Shopify</p>
+      </div>
+    </div>
   </div>
-  
-  <%= yield %>
-  
+
+  <div id="container">
+    <div class="wrapper">
+      <div class="box"><div class="innerbox">
+      <%= yield %>
+      </div></div>
+    </div>
+  </div>
+
   <div id="footer">
-    <p>
-      <a href="#">Terms and Conditions</a> | <a href="#">Privacy</a> | <a href="#">About</a>
-    </p>
-    <p>
-      &copy; 2010 Copyright ~ <a href="http://martincik.com">Ladislav Martincik</a> ~ All rights reserved worldwide. Logo/Favicon by <a href="http://www.webdesignerdepot.com/">www.webdesignerdepot.com</a>
-    </p>
+    <div class="wrapper">
+      <p>
+        <%= link_to 'Terms &amp; Conditions', terms_url %> | <%= link_to 'Privacy Policy', privacy_url %>
+      </p>
+      <p>
+        &copy; 2010 Copyright ~ <a href="http://martincik.com">Ladislav Martincik</a> ~ All rights reserved worldwide. Logo/Favicon by <a href="http://www.webdesignerdepot.com/">www.webdesignerdepot.com</a>
+      </p>
+    </div>
   </div>
 </body>
 </html>

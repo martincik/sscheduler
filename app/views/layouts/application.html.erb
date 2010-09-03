@@ -16,6 +16,16 @@
 
   <%= javascript_include_tag 'jquery.ptTimeSelect', 'application' %>
 
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-157169-14']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 </head>
 
 <body>
@@ -23,7 +33,7 @@
     <div class="wrapper">
     
       <div id="logo">
-        <h1><%= link_to 'ScheduleIt', root_path %></h1>
+        <h1><%= link_to 'ScheduleIt', scheduled_products_path %></h1>
         <p>easy product scheduling for Shopify</p>
       </div>
       <div id="status">
@@ -51,7 +61,7 @@
   <div id="footer">
     <div class="wrapper">
     <p>
-      <a href="#">Terms and Conditions</a> | <a href="#">Privacy</a> | <a href="#">About</a>
+      <%= link_to 'Terms &amp; Conditions', terms_url %> | <%= link_to 'Privacy Policy', privacy_url %>
     </p>
     <p>
       &copy; 2010 Copyright ~ <a href="http://martincik.com">Ladislav Martincik</a> ~ All rights reserved worldwide. Logo/Favicon by <a href="http://www.webdesignerdepot.com/">www.webdesignerdepot.com</a>

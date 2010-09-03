@@ -1,6 +1,9 @@
 @import 'reset';
 @import 'common';
 @import 'awesome_buttons';
+@import 'header';
+@import 'footer';
+@import 'box';
 
 body {
   background: #eee url(/images/background.png);
@@ -9,51 +12,6 @@ body {
 .wrapper {
   width: 960px;
   margin: 0 auto;
-}
-
-#header {
-  #logo {
-    float: left;
-    width: 300px;
-    padding: 20px 20px 10px 62px;
-    background: transparent url('/images/scheduleitapp_icon.png') 10px 15px no-repeat;
-    text-shadow: rgba(254, 255, 255, 0.496094) 0px 1px 0px;
-    
-    a {
-      text-decoration: none;
-      color: #666;
-      text-shadow: rgba(254, 255, 255, 0.496094) 0px 1px 0px;
-    }
-    
-    h1 {
-      color: #666;
-      line-height: 1em;
-      font-size: 17pt;
-      font-family: 'Droid Sans', sans-serif;
-    }
-
-    p {
-      font-size: 12px;
-      color: #666;
-    }
-  }
-  
-  #status {
-    float: right;
-    padding: 40px 10px 0 0;
-    font-size: 12px;
-
-  	width: 500px;
-  	text-align: right;
-  	
-  	color: #666;
-    text-shadow: rgba(254, 255, 255, 0.496094) 0px 1px 0px;
-    
-    a { 
-      color: #666;
-    }
-  }
-  
 }
 
 .flash {
@@ -77,23 +35,6 @@ body {
 
 #container {
   padding: 10px;
-  
-  .box {
-    padding: 5px;
-    background: #dfdeda;
-    border: 1px solid #bbb;
-    
-    .box-shadow;
-    .rounded;
-    
-    .innerbox {
-      .rounded(6px);
-      
-      padding: 15px;
-      border: 1px solid #bbb;
-      background: #fff;
-    }
-  }
   
   table {
     color: #555;
@@ -175,17 +116,4 @@ body {
   }
 } 
 
-#footer {
-  margin-top: 5px;
-  text-shadow: rgba(254, 255, 255, 0.496094) 0px 1px 0px;
-    
-  a {
-    color: #666;
-  }
-  
-  p {
-    padding: 5px 10px 0 10px;
-    font-size: 12px;
-    color: #666;
-  }
-}
+@import 'footer';

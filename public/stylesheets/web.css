@@ -8,9 +8,324 @@
 
 
 
-*/body { text-shadow: rgba(254, 255, 255, 0.496094) 0px 1px 0px; }
+*/html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+body { line-height: 1; }
+ol, ul { list-style: none; }
+blockquote, q { quotes: none; }
+blockquote:before {
+  content: '';
+  content: none;
+}
+blockquote:after {
+  content: '';
+  content: none;
+}
+q:before {
+  content: '';
+  content: none;
+}
+q:after {
+  content: '';
+  content: none;
+}
+:focus { outline: 0; }
+ins { text-decoration: none; }
+del { text-decoration: line-through; }
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+html {
+  margin: 0 0 1px 0;
+  padding: 0;
+  height: 100%;
+}
+body {
+  margin: 0;
+  text-align: left;
+  padding: 0;
+  font: normal 14px/1.2em "Helvetica Neue", "Lucida Grande", Arial, Helvetica, Geneva, sans-serif;
+  color: #111111;
+}
+ul, li, form, input, dt, dl, dd, ol, div, p, blockquote, h1, h2, h3, h4, h5, h6, a {
+  margin: 0;
+  padding: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+  line-height: 1.4em;
+}
+h1, h2, h3 {
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  padding-bottom: 2px;
+  font-size: 12pt;
+  color: #111111;
+}
+h2 { font-size: 18pt; }
+h3 { font-size: 10pt; }
+p { margin: 0; }
+table {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+td {
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+div { display: block; }
+ol, ul, li {
+  margin: 0.2em 0 1em 0;
+  padding-left: 20px;
+}
+li {
+  margin: 0;
+  padding-left: 0;
+}
+img { border: none; }
+a {
+  padding: 0;
+  margin: 0;
+  text-decoration: underline;
+  background: transparent;
+}
+a:link {
+  color: #222222;
+  background: transparent;
+}
+a:visited {
+  color: #222222;
+  background: transparent;
+}
+a:hover {
+  color: #222222;
+  text-decoration: underline;
+}
+a[name] {
+  color: inherit;
+  text-decoration: none;
+}
+h1 { font-size: 22pt; }
+.clear { display: block; }
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.clearfix { display: block; }
+* html .clearfix { height: 1%; }
+.skiplink {
+  position: absolute;
+  left: -1000px;
+  width: 990px;
+  font-size: 1px;
+  line-height: 1;
+  border: 1px solid #ff0000;
+}
+.hide { display: none; }
+.left { float: left; }
+.right { float: right; }
+.hot { border: 1px solid #ff0000 !important; }
+#header #logo {
+  float: left;
+  width: 300px;
+  padding: 20px 20px 10px 62px;
+  background: transparent url('/images/scheduleitapp_icon.png') 10px 15px no-repeat;
+  text-shadow: rgba(254, 255, 255, 0.496094) 0px 1px 0px;
+}
+#header #logo a {
+  text-decoration: none;
+  color: #666666;
+  text-shadow: rgba(254, 255, 255, 0.496094) 0px 1px 0px;
+}
+#header #logo h1 {
+  color: #666666;
+  line-height: 1em;
+  font-size: 17pt;
+  font-family: 'Droid Sans', sans-serif;
+}
+#header #logo p {
+  font-size: 12px;
+  color: #666666;
+}
+#header #status {
+  float: right;
+  padding: 40px 10px 0 0;
+  font-size: 12px;
+  width: 500px;
+  text-align: right;
+  color: #666666;
+  text-shadow: rgba(254, 255, 255, 0.496094) 0px 1px 0px;
+}
+#header #status a { color: #666666; }
+#footer {
+  margin: 10px;
+  padding-bottom: 20px;
+  text-shadow: rgba(254, 255, 255, 0.496094) 0px 1px 0px;
+}
+#footer a { color: #666666; }
+#footer p {
+  padding: 5px 10px 0 10px;
+  font-size: 12px;
+  color: #666666;
+}
+html {
+  margin: 0 0 1px 0;
+  padding: 0;
+  height: 100%;
+}
+body {
+  margin: 0;
+  text-align: left;
+  padding: 0;
+  font: normal 14px/1.2em "Helvetica Neue", "Lucida Grande", Arial, Helvetica, Geneva, sans-serif;
+  color: #111111;
+}
+ul, li, form, input, dt, dl, dd, ol, div, p, blockquote, h1, h2, h3, h4, h5, h6, a {
+  margin: 0;
+  padding: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+  line-height: 1.4em;
+}
+h1, h2, h3 {
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  padding-bottom: 2px;
+  font-size: 12pt;
+  color: #111111;
+}
+h2 { font-size: 18pt; }
+h3 { font-size: 10pt; }
+p { margin: 0; }
+table {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+td {
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+div { display: block; }
+ol, ul, li {
+  margin: 0.2em 0 1em 0;
+  padding-left: 20px;
+}
+li {
+  margin: 0;
+  padding-left: 0;
+}
+img { border: none; }
+a {
+  padding: 0;
+  margin: 0;
+  text-decoration: underline;
+  background: transparent;
+}
+a:link {
+  color: #222222;
+  background: transparent;
+}
+a:visited {
+  color: #222222;
+  background: transparent;
+}
+a:hover {
+  color: #222222;
+  text-decoration: underline;
+}
+a[name] {
+  color: inherit;
+  text-decoration: none;
+}
+h1 { font-size: 22pt; }
+.clear { display: block; }
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.clearfix { display: block; }
+* html .clearfix { height: 1%; }
+.skiplink {
+  position: absolute;
+  left: -1000px;
+  width: 990px;
+  font-size: 1px;
+  line-height: 1;
+  border: 1px solid #ff0000;
+}
+.hide { display: none; }
+.left { float: left; }
+.right { float: right; }
+.hot { border: 1px solid #ff0000 !important; }
+.box {
+  margin: 0;
+  padding: 5px;
+  background: #dfdeda;
+  border: 1px solid #bbbbbb;
+  box-shadow: 3px 3px 3px #888888;
+  -moz-box-shadow: 3px 3px 3px #888888;
+  -webkit-box-shadow: 3px 3px 3px #888888;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+.box .innerbox {
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  padding: 15px;
+  border: 1px solid #bbbbbb;
+  background: #ffffff;
+}
+body {
+  background: #eeeeee url(/images/background.png);
+  text-shadow: rgba(254, 255, 255, 0.496094) 0px 1px 0px;
+  line-height: 1.4em;
+  font-size: 12px;
+  color: #222222;
+}
 h1 {
   font-family: 'Droid Sans';
   font-size: 6.5em;
   font-weight: bold;
 }
+.wrapper {
+  width: 960px;
+  margin: 0 auto;
+}
+#content .wrapper {
+  padding: 20px 50px;
+  text-align: justify;
+}
+#container .innerbox { padding: 40px; }
+#container ul { padding-top: 10px; }
+#container li {
+  list-style-type: circle;
+  margin-left: 20px;
+}
+#container p { padding: 10px 0px; }
