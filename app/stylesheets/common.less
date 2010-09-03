@@ -146,6 +146,27 @@ h1 {
   border-radius: @radius;
 }
 
+.rounded-topleft(@radius: 10px) {
+  -webkit-border-top-left-radius: @radius;
+  border-top-left-radius: @radius;
+  -moz-border-radius-topleft: @radius;
+}
+
+.rounded-topright(@radius: 10px) {
+  -webkit-border-top-right-radius: @radius;
+  border-top-right-radius: @radius;
+  -moz-border-radius-topright: @radius;
+}
+
+.rounded-bottom(@radius: 10px) {
+  -webkit-border-bottom-left-radius: @radius;
+  -webkit-border-bottom-right-radius: @radius;
+  border-bottom-left-radius: @radius;
+  border-bottom-right-radius: @radius;
+  -moz-border-radius-bottomleft: @radius;
+  -moz-border-radius-bottomright: @radius;
+}
+
 .box-shadow(@color: #888) {
   box-shadow: 3px 3px 3px @color;
   -moz-box-shadow: 3px 3px 3px @color;

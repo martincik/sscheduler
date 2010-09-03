@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
 
-  map.root :controller => 'scheduled_products'
+  map.root :controller => 'web'
 
   map.with_options :controller => 'login' do |login|
     login.login 'login'

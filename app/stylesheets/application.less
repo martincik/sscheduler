@@ -3,7 +3,7 @@
 @import 'awesome_buttons';
 
 body {
-  background: #eee;
+  background: #eee url(/images/background.png);
 }
 
 .wrapper {
@@ -12,45 +12,46 @@ body {
 }
 
 #header {
-  .background-linear(#444444, #555555, #444444);
-  color: #eee;
-  border-bottom: 5px solid #a1cb79;
-
-  a {
-    color: #eee;
-  }
-  
   #logo {
     float: left;
     width: 300px;
-    padding: 20px 20px 20px 56px;
-    background: transparent url('/images/scheduleitapp_icon.png') left center no-repeat;
+    padding: 20px 20px 10px 62px;
+    background: transparent url('/images/scheduleitapp_icon.png') 10px 15px no-repeat;
+    text-shadow: rgba(254, 255, 255, 0.496094) 0px 1px 0px;
     
     a {
       text-decoration: none;
+      color: #666;
+      text-shadow: rgba(254, 255, 255, 0.496094) 0px 1px 0px;
     }
     
     h1 {
-      color: #fff;
+      color: #666;
       line-height: 1em;
-      text-shadow: 2px 2px 2px #333333;
       font-size: 17pt;
-      opacity: .9;
+      font-family: 'Droid Sans', sans-serif;
     }
 
     p {
       font-size: 12px;
-      color: #fff;
-      text-shadow:1px 1px 1px #333333;
+      color: #666;
     }
   }
   
   #status {
     float: right;
-    padding: 30px;
+    padding: 40px 10px 0 0;
+    font-size: 12px;
 
   	width: 500px;
   	text-align: right;
+  	
+  	color: #666;
+    text-shadow: rgba(254, 255, 255, 0.496094) 0px 1px 0px;
+    
+    a { 
+      color: #666;
+    }
   }
   
 }
@@ -79,17 +80,17 @@ body {
   
   .box {
     padding: 5px;
-    background: #f2f1ed;
+    background: #dfdeda;
     border: 1px solid #bbb;
     
     .box-shadow;
     .rounded;
     
     .innerbox {
-      .rounded(7px);
+      .rounded(6px);
       
       padding: 15px;
-      border: 1px solid #ddd;
+      border: 1px solid #bbb;
       background: #fff;
     }
   }
@@ -101,40 +102,48 @@ body {
       color: #555; 
     }
     
-    .first {
-      padding-left: 10px;
-    }
-    
     thead {
+      th.first {
+        .rounded-topleft(5px);
+      }
       th {
         padding: 15px 0px 10px 0px;
-        background-color: #eaeff5;
-        border-bottom: 1px solid #ddd;
+        background-color: #e8e7e3;
+        border-bottom: 1px solid #bbb;
+        vertical-align: bottom;
+      }
+      th.last {
+        .rounded-topright(5px);
+        padding-right: 10px;
       }
     }
     tbody {
       td {
         padding: 5px 5px 5px 0px;
-        border-bottom: 1px solid #e9eef4;
+        border-bottom: 1px solid #ddd;
+      }
+      td.first {
+        padding-left: 5px;
       }
       td.time {
         white-space: nowrap;
       }
       tr.last td {
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid #bbb;
       }
     }
     tfoot {
       td {
+        .rounded-bottom(5px);
         padding: 15px 0px 10px 0px;
-        background-color: #eaeff5;
+        background-color: #e8e7e3;
       }
     }
   }
   
 }
 
-#scheduler {
+#scheduler {  
   label, input {
     vertical-align: middle;
   }
@@ -168,14 +177,15 @@ body {
 
 #footer {
   margin-top: 5px;
+  text-shadow: rgba(254, 255, 255, 0.496094) 0px 1px 0px;
     
   a {
-    color: #bbb;
+    color: #666;
   }
   
   p {
     padding: 5px 10px 0 10px;
     font-size: 12px;
-    color: #bbb;
+    color: #666;
   }
 }

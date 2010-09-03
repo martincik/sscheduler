@@ -5,7 +5,7 @@
 	<meta http-equiv="imagetoolbar" content="no" />
 	<meta name="MSSmartTagsPreventParsing" content="true" />
 
-  <title>ScheduleIt for Shopify</title>
+  <title>ScheduleIt - easy product scheduling for Shopify</title>
 
 	<link rel="shortcut icon" href="/favicon.ico">
 
@@ -28,7 +28,7 @@
       </div>
       <div id="status">
         <% if current_shop %>
-          <%= link_to current_shop.url, "http://#{current_shop.url}", :class => 'shop_name' %> ~ <%= current_store.time_zone %> <span class="note">|</span>
+          <%= link_to current_shop.url, "http://#{current_shop.url}", :class => 'shop_name' %> in timezone <%= current_store.time_zone %> <span class="note">|</span>
           <%= link_to 'Logout', logout_path %><br />
         <% end %>
       </div>
@@ -38,8 +38,6 @@
 
   <div id="container" class="clearfix">
     <div class="wrapper">
-    
-    <div class="flash" id="flash-warning">Logged in to shopify store.</div>
     
     <%= render_flash flash %>
 

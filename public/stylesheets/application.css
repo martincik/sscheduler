@@ -228,43 +228,43 @@ h1 { font-size: 22pt; }
 .yellow.awesome { background-color: #ffb515; }
 .yellow.awesome:visited { background-color: #ffb515; }
 .yellow.awesome:hover { background-color: #fc9200; }
-body { background: #eeeeee; }
+body { background: #eeeeee url(/images/background.png); }
 .wrapper {
   width: 960px;
   margin: 0 auto;
 }
-#header {
-  background: #444444;
-  background: -webkit-gradient(linear, left top, left bottom, from(#555555), to(#444444));
-  color: #eeeeee;
-  border-bottom: 5px solid #a1cb79;
-}
-#header a { color: #eeeeee; }
 #header #logo {
   float: left;
   width: 300px;
-  padding: 20px 20px 20px 56px;
-  background: transparent url('/images/scheduleitapp_icon.png') left center no-repeat;
+  padding: 20px 20px 10px 62px;
+  background: transparent url('/images/scheduleitapp_icon.png') 10px 15px no-repeat;
+  text-shadow: rgba(254, 255, 255, 0.496094) 0px 1px 0px;
 }
-#header #logo a { text-decoration: none; }
+#header #logo a {
+  text-decoration: none;
+  color: #666666;
+  text-shadow: rgba(254, 255, 255, 0.496094) 0px 1px 0px;
+}
 #header #logo h1 {
-  color: #ffffff;
+  color: #666666;
   line-height: 1em;
-  text-shadow: 2px 2px 2px #333333;
   font-size: 17pt;
-  opacity: 0.9;
+  font-family: 'Droid Sans', sans-serif;
 }
 #header #logo p {
   font-size: 12px;
-  color: #ffffff;
-  text-shadow: 1px 1px 1px #333333;
+  color: #666666;
 }
 #header #status {
   float: right;
-  padding: 30px;
+  padding: 40px 10px 0 0;
+  font-size: 12px;
   width: 500px;
   text-align: right;
+  color: #666666;
+  text-shadow: rgba(254, 255, 255, 0.496094) 0px 1px 0px;
 }
+#header #status a { color: #666666; }
 .flash {
   padding: 15px;
   background: #f2f1ed;
@@ -280,7 +280,7 @@ body { background: #eeeeee; }
 #container { padding: 10px; }
 #container .box {
   padding: 5px;
-  background: #f2f1ed;
+  background: #dfdeda;
   border: 1px solid #bbbbbb;
   box-shadow: 3px 3px 3px #888888;
   -moz-box-shadow: 3px 3px 3px #888888;
@@ -290,30 +290,48 @@ body { background: #eeeeee; }
   border-radius: 10px;
 }
 #container .box .innerbox {
-  -webkit-border-radius: 7px;
-  -moz-border-radius: 7px;
-  border-radius: 7px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
   padding: 15px;
-  border: 1px solid #dddddd;
+  border: 1px solid #bbbbbb;
   background: #ffffff;
 }
 #container table { color: #555555; }
 #container table a { color: #555555; }
-#container table .first { padding-left: 10px; }
+#container table thead th.first {
+  -webkit-border-top-left-radius: 5px;
+  border-top-left-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+}
 #container table thead th {
   padding: 15px 0px 10px 0px;
-  background-color: #eaeff5;
-  border-bottom: 1px solid #dddddd;
+  background-color: #e8e7e3;
+  border-bottom: 1px solid #bbbbbb;
+  vertical-align: bottom;
+}
+#container table thead th.last {
+  -webkit-border-top-right-radius: 5px;
+  border-top-right-radius: 5px;
+  -moz-border-radius-topright: 5px;
+  padding-right: 10px;
 }
 #container table tbody td {
   padding: 5px 5px 5px 0px;
-  border-bottom: 1px solid #e9eef4;
+  border-bottom: 1px solid #dddddd;
 }
+#container table tbody td.first { padding-left: 5px; }
 #container table tbody td.time { white-space: nowrap; }
-#container table tbody tr.last td { border-bottom: 1px solid #dddddd; }
+#container table tbody tr.last td { border-bottom: 1px solid #bbbbbb; }
 #container table tfoot td {
+  -webkit-border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  -moz-border-radius-bottomright: 5px;
   padding: 15px 0px 10px 0px;
-  background-color: #eaeff5;
+  background-color: #e8e7e3;
 }
 #scheduler label { vertical-align: middle; }
 #scheduler input { vertical-align: middle; }
@@ -346,10 +364,13 @@ body { background: #eeeeee; }
 #scheduler input.time { width: 65px; }
 #scheduler input.date { width: 135px; }
 #scheduler span.action input { margin-left: 5px; }
-#footer { margin-top: 5px; }
-#footer a { color: #bbbbbb; }
+#footer {
+  margin-top: 5px;
+  text-shadow: rgba(254, 255, 255, 0.496094) 0px 1px 0px;
+}
+#footer a { color: #666666; }
 #footer p {
   padding: 5px 10px 0 10px;
   font-size: 12px;
-  color: #bbbbbb;
+  color: #666666;
 }

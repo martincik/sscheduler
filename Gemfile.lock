@@ -68,7 +68,7 @@ DEPENDENCIES
   autotest
   autotest-growl
   factory_girl
-  less
+  less (~> 1.2.21)
   mysql (~> 2.8.1)
   open_gem
   rails (~> 2.3.8)
