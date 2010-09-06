@@ -1,3 +1,5 @@
+require 'bundler/capistrano'
+
 set :application, 'scheduleitapp.com'
 
 role :app, "scheduleitapp.com"
@@ -35,33 +37,6 @@ namespace :deploy do
     task t, :roles => :app do ; end
   end
 end
-
-namespace :bundler do
-  desc "Install bundler gem on the remote server."
-  task :install do
-    run("gem install bundler --source=http://gemcutter.org")
-  end
-  
-  task :create_symlink, :roles => :app do
-    shared_dir = File.join(shared_path, 'bundle')
-    release_dir = File.join(current_release, '.bundle')
-    run("mkdir -p #{shared_dir} && ln -s #{shared_dir} #{release_dir}")
-  end
-  
-  task :bundle_new_release, :roles => :app do
-    bundler.create_symlink
-    run "cd #{release_path} && bundle install"
-  end
-  
-  task :lock, :roles => :app do
-    run "cd #{current_release} && bundle lock;"
-  end
-  
-  task :unlock, :roles => :app do
-    run "cd #{current_release} && bundle unlock;"
-  end
-end
-after 'deploy:update_code', 'bundler:bundle_new_release'
 
 namespace :deploy do
   desc "Update the crontab file"
