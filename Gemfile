@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 source "http://gemcutter.org"
 
-gem 'rails', '~>2.3.8'
+gem 'rails', '=2.3.9'
 gem 'shopify_api', '~>1.0.5'
 gem 'mysql', '~>2.8.1'
 gem 'whenever', '~>0.5.0'
