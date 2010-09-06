@@ -1,6 +1,5 @@
 GEM
   remote: http://rubygems.org/
-  remote: http://gemcutter.org/
   specs:
     actionmailer (2.3.9)
       actionpack (= 2.3.9)
@@ -69,7 +68,7 @@ DEPENDENCIES
   autotest-growl
   factory_girl
   less (~> 1.2.21)
-  mysql (~> 2.8.1)
+  mysql
   open_gem
   rails (= 2.3.9)
   rcov
