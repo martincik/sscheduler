@@ -43,6 +43,10 @@ namespace :deploy do
   task :update_crontab, :roles => :db do
     run "cd #{release_path} && bundle exec whenever --update-crontab #{application}"
   end
+  
+  task :migrate, :roles => :db do
+    run "cd #{release_path} && bundle exec rake RAILS_ENV=production db:migrate"
+  end
 end
 after "deploy:symlink", "deploy:update_crontab"
 
