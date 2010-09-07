@@ -444,6 +444,8 @@ body { background: #eeeeee url(/images/background.png); }
   padding: 15px 0px 10px 0px;
   background-color: #e8e7e3;
 }
+#install { color: #666666; }
+#install p { padding: 10px 0; }
 #scheduler label { vertical-align: middle; }
 #scheduler input { vertical-align: middle; }
 #scheduler label {
