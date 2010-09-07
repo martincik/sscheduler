@@ -163,6 +163,10 @@ h1 { font-size: 22pt; }
   font-size: 12px;
   color: #666666;
 }
+#header #installapp {
+  float: right;
+  padding: 30px 10px 0 0;
+}
 #header #status {
   float: right;
   padding: 40px 10px 0 0;
@@ -184,112 +188,14 @@ h1 { font-size: 22pt; }
   font-size: 12px;
   color: #666666;
 }
-html {
-  margin: 0 0 1px 0;
-  padding: 0;
-  height: 100%;
-}
-body {
-  margin: 0;
-  text-align: left;
-  padding: 0;
-  font: normal 14px/1.2em "Helvetica Neue", "Lucida Grande", Arial, Helvetica, Geneva, sans-serif;
-  color: #111111;
-}
-ul, li, form, input, dt, dl, dd, ol, div, p, blockquote, h1, h2, h3, h4, h5, h6, a {
-  margin: 0;
-  padding: 0;
-}
-h1, h2, h3, h4, h5, h6 {
-  font-size: 100%;
-  line-height: 1.4em;
-}
-h1, h2, h3 {
-  margin: 0;
-  padding: 0;
-}
-h1 {
-  padding-bottom: 2px;
-  font-size: 12pt;
-  color: #111111;
-}
-h2 { font-size: 18pt; }
-h3 { font-size: 10pt; }
-p { margin: 0; }
-table {
-  padding: 0;
-  margin: 0;
-  width: 100%;
-}
-td {
-  text-align: left;
-  padding: 0;
-  margin: 0;
-  border: none;
-}
-div { display: block; }
-ol, ul, li {
-  margin: 0.2em 0 1em 0;
-  padding-left: 20px;
-}
-li {
-  margin: 0;
-  padding-left: 0;
-}
-img { border: none; }
-a {
-  padding: 0;
-  margin: 0;
-  text-decoration: underline;
-  background: transparent;
-}
-a:link {
-  color: #222222;
-  background: transparent;
-}
-a:visited {
-  color: #222222;
-  background: transparent;
-}
-a:hover {
-  color: #222222;
-  text-decoration: underline;
-}
-a[name] {
-  color: inherit;
-  text-decoration: none;
-}
-h1 { font-size: 22pt; }
-.clear { display: block; }
-.clearfix:after {
-  content: ".";
-  display: block;
-  height: 0;
-  clear: both;
-  visibility: hidden;
-}
-.clearfix { display: block; }
-* html .clearfix { height: 1%; }
-.skiplink {
-  position: absolute;
-  left: -1000px;
-  width: 990px;
-  font-size: 1px;
-  line-height: 1;
-  border: 1px solid #ff0000;
-}
-.hide { display: none; }
-.left { float: left; }
-.right { float: right; }
-.hot { border: 1px solid #ff0000 !important; }
 .box {
   margin: 0;
   padding: 5px;
   background: #dfdeda;
   border: 1px solid #bbbbbb;
-  box-shadow: 3px 3px 3px #888888;
-  -moz-box-shadow: 3px 3px 3px #888888;
-  -webkit-box-shadow: 3px 3px 3px #888888;
+  box-shadow: #888888 3px 3px 3px;
+  -moz-box-shadow: #888888 3px 3px 3px;
+  -webkit-box-shadow: #888888 3px 3px 3px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
@@ -301,6 +207,33 @@ h1 { font-size: 22pt; }
   padding: 15px;
   border: 1px solid #bbbbbb;
   background: #ffffff;
+}
+a.button, .button {
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 2px 4px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.6) 0px 2px 4px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.6) 0px 2px 4px;
+  cursor: pointer;
+  padding: 5px 20px 6px;
+  text-decoration: none;
+  text-shadow: rgba(0, 0, 0, 0.4) 0px 1px 1px;
+  font-size: 18px;
+  font-weight: bold;
+  background: #dfdeda;
+  background: -webkit-gradient(linear, left top, left bottom, from(#b7b5bc), to(#726f7a));
+  color: white;
+}
+a.purple, .purple {
+  background: #9986f9;
+  background: -webkit-gradient(linear, left top, left bottom, from(#9986f9), to(#5644ac));
+  color: white;
+}
+a.green, .green {
+  background: #b2e97c;
+  background: -webkit-gradient(linear, left top, left bottom, from(#b2e97c), to(#6fbd20));
+  color: white;
 }
 body {
   background: #eeeeee url(/images/background.png);

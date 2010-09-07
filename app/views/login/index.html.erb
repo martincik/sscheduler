@@ -9,8 +9,8 @@
         <span class="hint">(or just the subdomain if it&rsquo;s at myshopify.com)</span>
       </label>
       <p>
-      <%= text_field_tag 'shop', {}, {:size => 45} %>
-      <%= submit_tag 'Install' %>
+      <%= text_field_tag 'shop', {}, {:size => 45, :class => 'install'} %>
+      <%= submit_tag 'Install', :class => 'button' %>
       </p>
     <% end %>
   </div>

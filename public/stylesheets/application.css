@@ -141,93 +141,33 @@ h1 { font-size: 22pt; }
 .left { float: left; }
 .right { float: right; }
 .hot { border: 1px solid #ff0000 !important; }
-.awesome {
-  background: #222222 url(/images/alert-overlay.png) repeat-x;
-  display: inline-block;
-  padding: 5px 10px 6px;
-  color: #ffffff;
-  text-decoration: none;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  position: relative;
+a.button, .button {
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 2px 4px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.6) 0px 2px 4px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.6) 0px 2px 4px;
   cursor: pointer;
-}
-.awesome:visited {
-  background: #222222 url(/images/alert-overlay.png) repeat-x;
-  display: inline-block;
-  padding: 5px 10px 6px;
-  color: #ffffff;
+  padding: 5px 20px 6px;
   text-decoration: none;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  position: relative;
-  cursor: pointer;
-}
-.awesome:hover {
-  background-color: #111111;
-  color: #ffffff;
-}
-.awesome:active { top: 1px; }
-.small.awesome { font-size: 11px; }
-.small.awesome:visited { font-size: 11px; }
-.awesome {
-  font-size: 13px;
+  text-shadow: rgba(0, 0, 0, 0.4) 0px 1px 1px;
+  font-size: 18px;
   font-weight: bold;
-  line-height: 1;
-  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+  background: #dfdeda;
+  background: -webkit-gradient(linear, left top, left bottom, from(#b7b5bc), to(#726f7a));
+  color: white;
 }
-.awesome:visited {
-  font-size: 13px;
-  font-weight: bold;
-  line-height: 1;
-  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+a.purple, .purple {
+  background: #9986f9;
+  background: -webkit-gradient(linear, left top, left bottom, from(#9986f9), to(#5644ac));
+  color: white;
 }
-.medium.awesome {
-  font-size: 13px;
-  font-weight: bold;
-  line-height: 1;
-  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+a.green, .green {
+  background: #b2e97c;
+  background: -webkit-gradient(linear, left top, left bottom, from(#b2e97c), to(#6fbd20));
+  color: white;
 }
-.medium.awesome:visited {
-  font-size: 13px;
-  font-weight: bold;
-  line-height: 1;
-  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
-}
-.large.awesome {
-  font-size: 14px;
-  padding: 8px 14px 9px;
-}
-.large.awesome:visited {
-  font-size: 14px;
-  padding: 8px 14px 9px;
-}
-.green.awesome { background-color: #91bd09; }
-.green.awesome:visited { background-color: #91bd09; }
-.green.awesome:hover { background-color: #749a02; }
-.blue.awesome { background-color: #2daebf; }
-.blue.awesome:visited { background-color: #2daebf; }
-.blue.awesome:hover { background-color: #007d9a; }
-.red.awesome { background-color: #e33100; }
-.red.awesome:visited { background-color: #e33100; }
-.red.awesome:hover { background-color: #872300; }
-.magenta.awesome { background-color: #a9014b; }
-.magenta.awesome:visited { background-color: #a9014b; }
-.magenta.awesome:hover { background-color: #630030; }
-.orange.awesome { background-color: #ff5c00; }
-.orange.awesome:visited { background-color: #ff5c00; }
-.orange.awesome:hover { background-color: #d45500; }
-.yellow.awesome { background-color: #ffb515; }
-.yellow.awesome:visited { background-color: #ffb515; }
-.yellow.awesome:hover { background-color: #fc9200; }
 #header #logo {
   float: left;
   width: 300px;
@@ -250,6 +190,10 @@ h1 { font-size: 22pt; }
   font-size: 12px;
   color: #666666;
 }
+#header #installapp {
+  float: right;
+  padding: 30px 10px 0 0;
+}
 #header #status {
   float: right;
   padding: 40px 10px 0 0;
@@ -271,112 +215,14 @@ h1 { font-size: 22pt; }
   font-size: 12px;
   color: #666666;
 }
-html {
-  margin: 0 0 1px 0;
-  padding: 0;
-  height: 100%;
-}
-body {
-  margin: 0;
-  text-align: left;
-  padding: 0;
-  font: normal 14px/1.2em "Helvetica Neue", "Lucida Grande", Arial, Helvetica, Geneva, sans-serif;
-  color: #111111;
-}
-ul, li, form, input, dt, dl, dd, ol, div, p, blockquote, h1, h2, h3, h4, h5, h6, a {
-  margin: 0;
-  padding: 0;
-}
-h1, h2, h3, h4, h5, h6 {
-  font-size: 100%;
-  line-height: 1.4em;
-}
-h1, h2, h3 {
-  margin: 0;
-  padding: 0;
-}
-h1 {
-  padding-bottom: 2px;
-  font-size: 12pt;
-  color: #111111;
-}
-h2 { font-size: 18pt; }
-h3 { font-size: 10pt; }
-p { margin: 0; }
-table {
-  padding: 0;
-  margin: 0;
-  width: 100%;
-}
-td {
-  text-align: left;
-  padding: 0;
-  margin: 0;
-  border: none;
-}
-div { display: block; }
-ol, ul, li {
-  margin: 0.2em 0 1em 0;
-  padding-left: 20px;
-}
-li {
-  margin: 0;
-  padding-left: 0;
-}
-img { border: none; }
-a {
-  padding: 0;
-  margin: 0;
-  text-decoration: underline;
-  background: transparent;
-}
-a:link {
-  color: #222222;
-  background: transparent;
-}
-a:visited {
-  color: #222222;
-  background: transparent;
-}
-a:hover {
-  color: #222222;
-  text-decoration: underline;
-}
-a[name] {
-  color: inherit;
-  text-decoration: none;
-}
-h1 { font-size: 22pt; }
-.clear { display: block; }
-.clearfix:after {
-  content: ".";
-  display: block;
-  height: 0;
-  clear: both;
-  visibility: hidden;
-}
-.clearfix { display: block; }
-* html .clearfix { height: 1%; }
-.skiplink {
-  position: absolute;
-  left: -1000px;
-  width: 990px;
-  font-size: 1px;
-  line-height: 1;
-  border: 1px solid #ff0000;
-}
-.hide { display: none; }
-.left { float: left; }
-.right { float: right; }
-.hot { border: 1px solid #ff0000 !important; }
 .box {
   margin: 0;
   padding: 5px;
   background: #dfdeda;
   border: 1px solid #bbbbbb;
-  box-shadow: 3px 3px 3px #888888;
-  -moz-box-shadow: 3px 3px 3px #888888;
-  -webkit-box-shadow: 3px 3px 3px #888888;
+  box-shadow: #888888 3px 3px 3px;
+  -moz-box-shadow: #888888 3px 3px 3px;
+  -webkit-box-shadow: #888888 3px 3px 3px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
@@ -407,6 +253,7 @@ body { background: #eeeeee url(/images/background.png); }
 #flash-error { background: #f5a0a4; }
 #flash-warning { background: #ffe17f; }
 #container { padding: 10px; }
+#container input.install { font-size: 18px; }
 #container table { color: #555555; }
 #container table a { color: #555555; }
 #container table thead th.first {
