@@ -1,23 +1,6 @@
 <% form_tag schedule_path do -%>
 
-  <div class="box" id="scheduler">
-    <div class="innerbox">
-      <label>From</label>
-      <%= text_field_tag 'from_date', @from_date, { :class => "#{@checked_dates} date" } %>
-      <label>at</label>
-      <%= text_field_tag 'from_time', @from_time, { :class => "#{@checked_dates} time" } %>
-      <label>until</label>
-      <%= text_field_tag 'to_date', @to_date, { :class => "#{@checked_dates} date" } %>
-      <label>at</label>
-      <%= text_field_tag 'to_time', @to_time, { :class => "#{@checked_dates} time" } %>
-      <span class="action">
-        <%= submit_tag 'Schedule &raquo;', {:id => 'schedule', :class => "large green awesome"} %>
-        <%= submit_tag 'Unschedule &raquo;', {:id => 'unschedule', :class => "large red awesome"} %>
-      </span>
-    </div>
-  </div>
-
-  <div class="box" style="margin-top: 15px">
+  <div class="box">
     <div class="innerbox" style="padding: 0">
       <table cellpadding="0" cellspacing="0" id="product-table">
         <thead>
@@ -47,9 +30,29 @@
           </tr>
           <% end -%>
         </tbody>
-        <tfoot>
+        <tfoot id="scheduler">
           <tr>
-            <td colspan="7">&nbsp;</td>
+            <td colspan="7">
+              With selected products you can:
+              <ul>
+                <li>
+                  <label>schedule them from</label>
+                  <%= text_field_tag 'from_date', @from_date, { :class => "#{@checked_dates} date" } %>
+                  <label>at</label>
+                  <%= text_field_tag 'from_time', @from_time, { :class => "#{@checked_dates} time" } %>
+                  <label>until</label>
+                  <%= text_field_tag 'to_date', @to_date, { :class => "#{@checked_dates} date" } %>
+                  <label>at</label>
+                  <%= text_field_tag 'to_time', @to_time, { :class => "#{@checked_dates} time" } %>
+                  <span class="action">
+                    <%= submit_tag 'Schedule &raquo;', {:id => 'schedule'} %>
+                  </span>
+                </li>
+                <li>
+                  or you can <%= submit_tag 'Unschedule &raquo;', {:id => 'unschedule' } %> them.
+                </li>
+              </ul>
+            </td>
           </tr>
         </tfoot>
       </table>

@@ -157,6 +157,7 @@ a.button, .button {
   background: #dfdeda;
   background: -webkit-gradient(linear, left top, left bottom, from(#b7b5bc), to(#726f7a));
   color: white;
+  border-width: 0;
 }
 a.purple, .purple {
   background: #9986f9;
@@ -288,39 +289,43 @@ body { background: #eeeeee url(/images/background.png); }
   border-bottom-right-radius: 5px;
   -moz-border-radius-bottomleft: 5px;
   -moz-border-radius-bottomright: 5px;
-  padding: 15px 0px 10px 0px;
   background-color: #e8e7e3;
+  padding: 20px 20px 5px 20px;
 }
 #install { color: #666666; }
 #install p { padding: 10px 0; }
-#scheduler label { vertical-align: middle; }
-#scheduler input { vertical-align: middle; }
+#scheduler ul { padding-top: 5px; }
+#scheduler ul li {
+  list-style-type: lower-roman;
+  line-height: 1.8em;
+  margin-left: 20px;
+}
+#scheduler input.time {
+  font-size: 14px;
+  color: #555555;
+  margin: 0 5px;
+}
+#scheduler input.date {
+  font-size: 14px;
+  color: #555555;
+  margin: 0 5px;
+}
 #scheduler label {
-  font-size: 22px;
   color: #555555;
-  margin: 0 5px;
+  padding: 0px;
 }
-#scheduler input.time {
-  font-size: 22px;
-  color: #555555;
-  margin: 0 5px;
-}
-#scheduler input.date {
-  font-size: 22px;
-  color: #555555;
-  margin: 0 5px;
-}
-#scheduler label { padding: 0px; }
 #scheduler input.time {
   border: none;
   border-bottom: 1px dashed #888888;
-  background-color: #fcf6e1;
+  background-color: #ffffff;
+  font-weight: bold;
 }
 #scheduler input.date {
   border: none;
   border-bottom: 1px dashed #888888;
-  background-color: #fcf6e1;
+  background-color: #ffffff;
+  font-weight: bold;
 }
-#scheduler input.time { width: 65px; }
-#scheduler input.date { width: 135px; }
+#scheduler input.time { width: 50px; }
+#scheduler input.date { width: 95px; }
 #scheduler span.action input { margin-left: 5px; }

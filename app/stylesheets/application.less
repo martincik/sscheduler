@@ -83,8 +83,8 @@ body {
     tfoot {
       td {
         .rounded-bottom(5px);
-        padding: 15px 0px 10px 0px;
         background-color: #e8e7e3;
+        padding: 20px 20px 5px 20px;
       }
     }
   }
@@ -99,32 +99,38 @@ body {
   }
 }
 
-#scheduler {  
-  label, input {
-    vertical-align: middle;
+#scheduler {
+  ul { 
+    padding-top: 5px;
+    li {
+      list-style-type: lower-roman;
+      line-height: 1.8em;
+      margin-left: 20px;
+    }
   }
-  
-  label,
+
   input.time,
   input.date {
-    font-size: 22px;
+    font-size: 14px;
     color: #555;
     margin: 0 5px;
   }
   label {
+    color: #555;
     padding: 0px;
   }
   input.time,
   input.date {
     border: none;
     border-bottom: 1px dashed #888;
-    background-color: #fcf6e1;
+    background-color: #fff;
+    font-weight: bold;
   }
   input.time {
-    width: 65px;
+    width: 50px;
   }
   input.date {
-    width: 135px;
+    width: 95px;
   }
   span.action input {
     margin-left: 5px;

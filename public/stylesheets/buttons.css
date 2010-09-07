@@ -24,6 +24,7 @@
   background: #dfdeda;
   background: -webkit-gradient(linear, left top, left bottom, from(#b7b5bc), to(#726f7a));
   color: white;
+  border-width: 0;
 }
 a.purple, .purple {
   background: #9986f9;
