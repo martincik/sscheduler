@@ -26,7 +26,7 @@ describe LoginController do
 
   it "should redirect to login page" do
     post 'authenticate'
-    response.should redirect_to root_path
+    response.should redirect_to home_path
   end
 
   it "should create store and his time zone after login" do
@@ -41,7 +41,7 @@ describe LoginController do
     Store.first.time_zone == 'Hawaii'
     session[:time_zone].should == 'Hawaii'
     session[:store_id] == Store.first.id
-    response.should redirect_to root_url
+    response.should redirect_to home_url
   end
 
   it "should not create store, but set his changed time zone" do
@@ -57,7 +57,7 @@ describe LoginController do
     Store.count.should == 1
     session[:time_zone].should == 'Brasilia'
     session[:store_id] == Store.first.id
-    response.should redirect_to root_url
+    response.should redirect_to home_url
   end
 
   it "should not finalize authentication - bad params" do

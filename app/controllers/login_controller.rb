@@ -47,7 +47,7 @@ class LoginController < ApplicationController
   protected
 
     def return_address
-      session[:return_to] || root_url
+      session[:return_to] || home_url
     end
 
     def set_store_and_time_zone
