@@ -15,6 +15,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resource  :schedule
 
   map.home 'scheduled_products', :controller => 'scheduled_products'
+  map.exception 'exception', :controller => 'web', :action => 'exception'
 
 end
 

@@ -42,3 +42,9 @@ end
 
 Shopify::Log.new(Rails.root.join("log",Rails.env + "_shopify.log"))
 
+# defaults to exception.notifier@default.com
+ExceptionNotification::Notifier.sender_address = %("ScheduleIt Exceptions" <exceptions@scheduleitapp.com>)
+
+# defaults to "[ERROR] "
+ExceptionNotification::Notifier.email_prefix = "[ERROR] - ScheduleIt "
+ExceptionNotification::Notifier.exception_recipients = %w{ladislav.martincik@gmail.com}

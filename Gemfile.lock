@@ -17,6 +17,7 @@ GEM
       hoe (>= 1.2.1)
     columnize (0.3.1)
     configuration (1.1.0)
+    exception_notification (2.3.3.0)
     factory_girl (1.3.2)
     hoe (2.6.2)
       rake (>= 0.8.7)
@@ -66,6 +67,7 @@ PLATFORMS
 DEPENDENCIES
   autotest
   autotest-growl
+  exception_notification (= 2.3.3.0)
   factory_girl
   less (~> 1.2.21)
   mysql

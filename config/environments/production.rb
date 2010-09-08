@@ -26,3 +26,16 @@ config.action_view.cache_template_loading            = true
 
 # Enable threaded mode
 # config.threadsafe!
+
+ActionMailer::Base.perform_deliveries = true
+ActionMailer::Base.default_charset = "utf-8"
+ActionMailer::Base.delivery_method = :activerecord
+ActionMailer::Base.smtp_settings = {
+  :address => "smtp.gmail.com",
+  :port => "587",
+  :domain => "scheduleitapp.com",
+  :authentication => :plain,
+  :user_name => "exceptions@scheduleitapp.com",
+  :password => "K33586",
+  :tls => true
+}
