@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '=2.3.8'
+gem 'rails', '=2.3.9'
 gem 'shopify_api', '~>1.0.5'
 gem 'mysql'
 gem 'whenever', '~>0.5.0'

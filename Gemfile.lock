@@ -1,16 +1,16 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    actionmailer (2.3.8)
-      actionpack (= 2.3.8)
-    actionpack (2.3.8)
-      activesupport (= 2.3.8)
+    actionmailer (2.3.9)
+      actionpack (= 2.3.9)
+    actionpack (2.3.9)
+      activesupport (= 2.3.9)
       rack (~> 1.1.0)
-    activerecord (2.3.8)
-      activesupport (= 2.3.8)
-    activeresource (2.3.8)
-      activesupport (= 2.3.8)
-    activesupport (2.3.8)
+    activerecord (2.3.9)
+      activesupport (= 2.3.9)
+    activeresource (2.3.9)
+      activesupport (= 2.3.9)
+    activesupport (2.3.9)
     autotest (4.3.2)
     autotest-growl (0.2.5)
     chronic (0.2.3)
@@ -36,12 +36,12 @@ GEM
       launchy (~> 0.3.5)
     polyglot (0.3.1)
     rack (1.1.0)
-    rails (2.3.8)
-      actionmailer (= 2.3.8)
-      actionpack (= 2.3.8)
-      activerecord (= 2.3.8)
-      activeresource (= 2.3.8)
-      activesupport (= 2.3.8)
+    rails (2.3.9)
+      actionmailer (= 2.3.9)
+      actionpack (= 2.3.9)
+      activerecord (= 2.3.9)
+      activeresource (= 2.3.9)
+      activesupport (= 2.3.9)
       rake (>= 0.8.3)
     rake (0.8.7)
     rcov (0.9.8)
@@ -72,7 +72,7 @@ DEPENDENCIES
   less (~> 1.2.21)
   mysql
   open_gem
-  rails (= 2.3.8)
+  rails (= 2.3.9)
   rcov
   rspec
   ruby-debug
