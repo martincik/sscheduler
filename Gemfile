@@ -1,11 +1,11 @@
 source 'http://rubygems.org'
 
-gem 'rails', '=2.3.9'
+gem 'rails', '=2.3.8'
 gem 'shopify_api', '~>1.0.5'
 gem 'mysql'
 gem 'whenever', '~>0.5.0'
 gem 'less', '~>1.2.21'
-gem 'exception_notification', '=2.3.3.0', :require => 'exception_notification'
+gem 'exception_notification', '~>2.3.3', :require => 'exception_notification'
 
 platforms :ruby do
   gem 'ruby-debug'  
