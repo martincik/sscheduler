@@ -6,6 +6,7 @@
         <thead>
           <tr>
             <th class="first">&nbsp;</th>
+            <th>&nbsp;</th>
             <th>Name</th>
             <th>Price (<%= current_shop.shop.currency %>)</th>
             <th>Type</th>
@@ -21,6 +22,7 @@
               <%= checkbox_with_selection_for_scheduled_product(product,
                 @products_ids.include?(product.id.to_s), @checked_products) %>
             </td>
+            <td><%= product_photo_thumb(product) %></td>
             <td><%= link_to product.title, "http://#{current_shop.url}/admin/products/#{product.id}" %></td>
             <td><%= product.price_range %></td>
             <td><%= product.product_type %></td>
@@ -32,7 +34,7 @@
         </tbody>
         <tfoot id="scheduler">
           <tr>
-            <td colspan="7">
+            <td colspan="8">
               With selected products you can:
               <ul>
                 <li>

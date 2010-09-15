@@ -278,7 +278,9 @@ body { background: #eeeeee url(/images/background.png); }
 #container table tbody td {
   padding: 5px 5px 5px 0px;
   border-bottom: 1px solid #dddddd;
+  vertical-align: middle;
 }
+#container table tbody td img { border: none; }
 #container table tbody td.first { padding-left: 5px; }
 #container table tbody td.time { white-space: nowrap; }
 #container table tbody tr.last td { border-bottom: 1px solid #bbbbbb; }
