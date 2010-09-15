@@ -7,28 +7,33 @@
           <tr>
             <th class="first">&nbsp;</th>
             <th>&nbsp;</th>
-            <th>Name</th>
-            <th>Price (<%= current_shop.shop.currency %>)</th>
-            <th>Type</th>
-            <th>Visible from</th>
-            <th>Visible until</th>
-            <th class="last">Status</th>
+            <th class="product-info">Product details</th>
+            <th>Status</th>
+            <th class="last">Visibility</th>
           </tr>
         </thead>
         <tbody>
           <% @products.each do |product| %>
           <tr<%= ' class="last"' if @products.last == product %>>
-            <td class="first">
+            <td class="first center">
               <%= checkbox_with_selection_for_scheduled_product(product,
                 @products_ids.include?(product.id.to_s), @checked_products) %>
             </td>
-            <td><%= product_photo_thumb(product) %></td>
-            <td><%= link_to product.title, "http://#{current_shop.url}/admin/products/#{product.id}" %></td>
-            <td><%= product.price_range %></td>
-            <td><%= product.product_type %></td>
-            <td class="time"><%= product.from_time.to_s %></td>
-            <td class="time"><%= product.to_time.to_s %></td>
+            <td class="thumbnail center"><%= product_photo_thumb(product) %></td>
+            <td class="product-info">
+              <%= link_to product.title, "http://#{current_shop.url}/admin/products/#{product.id}" %>
+              <div>in category <%= product.product_type %> for <%= product.price_range %>&nbsp;<%= current_shop.shop.currency %></div>
+              <p class="tags">
+                <%= format_tags(product.tags) %>
+              </p>
+              <p>
+                <%= shorten(product.body_html) %>
+              </p>
+            </td>
             <td><%= is_published(product.published_at) %></td>
+            <td class="time">
+              <%= product.to_time.to_s %><br /><%= product.from_time.to_s %>
+            </td>
           </tr>
           <% end -%>
         </tbody>

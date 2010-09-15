@@ -2,7 +2,7 @@
 module ApplicationHelper
 
   def is_published(value)
-    value.present? && value == true ? 'Published' : 'Unpublished'
+    value.present? ? 'Published' : 'Hidden'
   end
 
   def current_store
@@ -20,5 +20,10 @@ module ApplicationHelper
     end
   end
 
-end
+  def shorten(str, length = 300)
+    return nil if str.nil? 
+    str.gsub!(/<\/?[^>]*>/, "")
+    str.length > 300 ? str[0,300] + '...' : str
+  end
 
+end

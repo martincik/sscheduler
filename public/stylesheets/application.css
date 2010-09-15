@@ -268,6 +268,7 @@ body { background: #eeeeee url(/images/background.png); }
   border-bottom: 1px solid #bbbbbb;
   vertical-align: bottom;
 }
+#container table thead th.product-info { padding: 5px; }
 #container table thead th.last {
   -webkit-border-top-right-radius: 5px;
   border-top-right-radius: 5px;
@@ -278,11 +279,46 @@ body { background: #eeeeee url(/images/background.png); }
 #container table tbody td {
   padding: 5px 5px 5px 0px;
   border-bottom: 1px solid #dddddd;
-  vertical-align: middle;
+  vertical-align: top;
+  height: 70px;
+  font-size: 12px;
 }
 #container table tbody td img { border: none; }
 #container table tbody td.first { padding-left: 5px; }
 #container table tbody td.time { white-space: nowrap; }
+#container table tbody td.center { vertical-align: middle; }
+#container table tbody td.thumbnail { width: 50px; }
+#container table tbody td.product-info {
+  padding: 10px 5px;
+  width: 650px;
+}
+#container table tbody td.product-info a {
+  font-size: 14px;
+  font-weight: bold;
+}
+#container table tbody td.product-info div {
+  font-size: 12px;
+  padding-top: 3px;
+}
+#container table tbody td.product-info p {
+  font-size: 12px;
+  padding-top: 3px;
+}
+#container table tbody td.product-info p {
+  color: #888888;
+  padding-top: 3px;
+}
+#container table tbody td.product-info p.tags span {
+  text-transform: uppercase;
+  background: #cccccc;
+  color: #ffffff;
+  padding: 2px 7px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  margin: 0 4px 4px 0;
+  font-size: 9px;
+}
 #container table tbody tr.last td { border-bottom: 1px solid #bbbbbb; }
 #container table tfoot td {
   -webkit-border-bottom-left-radius: 5px;

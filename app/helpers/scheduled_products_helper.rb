@@ -8,9 +8,20 @@ module ScheduledProductsHelper
   end
 
   def product_photo_thumb(product)
-    unless product.images.blank?
-      return image_tag product.images.first.src.gsub(/\.\w{3}\?/) {|s| "_thumb#{s}"}
-    end
+    return if product.images.blank?
+    image_tag transform_to_thumbs(product.images.first.src)
+  end
+
+  def transform_to_thumbs(src)
+    return if src.nil? 
+    src.gsub(/\.\w{3}\?/) {|s| "_thumb#{s}"}
+  end
+
+  def format_tags(tags_string)
+    return if tags_string.blank?
+    tags_string.split(',').map { |tag|
+      "<span>#{tag.strip}</span>"
+    }
   end
 
 end
