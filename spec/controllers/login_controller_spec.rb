@@ -46,14 +46,15 @@ describe LoginController do
 
   it "should not create store, but set his changed time zone" do
     store = Factory.create(:store)
+    time_zone = '(GMT-03:00) Brasilia'
     shopify_session = mock('session', :valid? => true, :site => 'test_site')
-    mock_shop = mock('shop', :timezone => '(GMT-03:00) Brasilia')
+    mock_shop = mock('shop', :timezone => time_zone)
     shopify_session.stub!(:shop).and_return(mock_shop)
     ShopifyAPI::Session.stub!(:new).and_return(shopify_session)
 
     lambda { post 'finalize', :shop => store.shop }.should change {
       Store.first.time_zone
-    }.from('Prague').to('Brasilia')
+    }.from('Prague').to(time_zone)
     Store.count.should == 1
     session[:time_zone].should == 'Brasilia'
     session[:store_id] == Store.first.id

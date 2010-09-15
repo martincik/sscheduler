@@ -45,6 +45,13 @@ describe SchedulesController do
     response.flash[:error].should_not be_blank
     response.should_not be_redirect
 
+    # With from date in past - bad
+    post 'create', :from_time => "1:00", :to_time => "1:00",
+      :from_date => (Date.today-1.day).to_s, :to_date => (Date.today+1.day).to_s,
+      :products => {'111' => '1'}, :commit => 'schedule'
+    response.flash[:error].should_not be_blank
+    response.should_not be_redirect
+
     # Without to_time param
     post 'create', :from_time => "1:00", :commit => 'schedule',
       :from_date => Date.today.to_s, :to_date => Date.today.to_s,
@@ -62,7 +69,7 @@ describe SchedulesController do
 
     # Correct time
     post 'create', :from_time => "1:00", :to_time => "2:00",
-      :from_date => Date.today.to_s, :to_date => Date.today.to_s,
+      :from_date => (Date.today+1.day).to_s, :to_date => (Date.today+1.day).to_s,
       :products => {'111' => '1'}, :commit => 'schedule'
     response.flash[:notice].should_not be_blank
     response.flash[:error].should be_blank
