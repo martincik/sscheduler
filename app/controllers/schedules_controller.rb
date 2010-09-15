@@ -6,7 +6,7 @@ class SchedulesController < ApplicationController
 
   def create
     @products_ids = params[:products].try(:keys) || []
-    params[:commit].downcase.include?('unschedule') ? unschedule : schedule
+    params[:commit] && params[:commit].downcase == 'unschedule' ? unschedule : schedule
   end
 
   private
@@ -21,7 +21,7 @@ class SchedulesController < ApplicationController
       end
 
       ScheduledProduct::schedule(current_store, @products_ids, @from, @to)
-      flash[:notice] = "Scheduling was successful."
+      flash[:notice] = "Successfuly added schedule information to our database."
 
       redirect_to scheduled_products_path
     end
@@ -29,7 +29,7 @@ class SchedulesController < ApplicationController
     def unschedule
       if check_products
         ScheduledProduct::unschedule(current_store, @products_ids)
-        flash[:notice] = 'Unscheduling was successful.'
+        flash[:notice] = 'Successfuly removed schedule information from our database.'
       end
 
       redirect_to scheduled_products_path
