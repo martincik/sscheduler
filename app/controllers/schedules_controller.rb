@@ -6,7 +6,7 @@ class SchedulesController < ApplicationController
 
   def create
     @products_ids = params[:products].try(:keys) || []
-    params[:commit] == "schedule" ? schedule : unschedule
+    params[:commit].downcase.include?('unschedule') ? unschedule : schedule
   end
 
   private
