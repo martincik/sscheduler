@@ -10,8 +10,9 @@ describe ScheduleWorker do
     @from, @to = 2.hours.ago, (Time.now+1.hours)
     @products_ids = [1,2,3]
     @shopify_products = []
-    @products_ids.each do |id|
-      @shopify_products << ShopifyAPI::Product.new(:id => id)
+    ShopifyAPI::Base.site = 'www.test_site.com'
+    @shopify_products = (1..3).inject([]) do |s, i|
+      s << ShopifyAPI::Product.new(:id => i)
     end
     ScheduledProduct.schedule(@store, @products_ids, @from, @to)
   end

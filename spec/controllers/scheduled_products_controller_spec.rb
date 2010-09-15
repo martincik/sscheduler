@@ -6,10 +6,10 @@ describe ScheduledProductsController do
     Store.delete_all
     ScheduledProduct.delete_all
     @store = Factory.create(:store)
+    ShopifyAPI::Base.site = 'www.test_site.com'
     @shopify_products = (1..3).inject([]) do |s, i|
       Factory(:scheduled_product, :shopify_id => i)
       s << ShopifyAPI::Product.new(:id => i)
-      s
     end
   end
 
