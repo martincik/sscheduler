@@ -21,10 +21,13 @@ module SchedulesHelper
   def check_correct_time
     @from = Time.zone.parse("#{params[:from_date]} #{params[:from_time]}")
     @to = Time.zone.parse("#{params[:to_date]} #{params[:to_time]}")
-    if @from >= @to
+    if (@from.past? or @to.past?)
+      flash.now[:error] = 'Chosen date in the past. Please check it.'
+      @checked_dates = 'error' and return false
+    end
+    if (@from >= @to)
       flash.now[:error] = 'Set Scheduled is incorrect. Please check it.'
-      @checked_dates = 'error'
-      return false
+      @checked_dates = 'error' and return false
     end
     true
   end
