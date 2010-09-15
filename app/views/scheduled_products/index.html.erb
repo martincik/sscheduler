@@ -11,14 +11,14 @@
             <th>Type</th>
             <th>Visible from</th>
             <th>Visible until</th>
-            <th class="last">Published</th>
+            <th class="last">State</th>
           </tr>
         </thead>
         <tbody>
           <% @products.each do |product| %>
           <tr<%= ' class="last"' if @products.last == product %>>
             <td class="first">
-              <%= checkbox_with_selection_for_scheduled_product(product, 
+              <%= checkbox_with_selection_for_scheduled_product(product,
                 @products_ids.include?(product.id.to_s), @checked_products) %>
             </td>
             <td><%= link_to product.title, "http://#{current_shop.url}/admin/products/#{product.id}" %></td>
@@ -60,17 +60,18 @@
   </div>
 <% end -%>
 
-<script type="text/javascript"> 
+<script type="text/javascript">
 //<![CDATA[
-  $("#from_time").ptTimeSelect(); 
+  $("#from_time").ptTimeSelect();
   $("#to_time").ptTimeSelect();
-  
-  $("#from_date").datepicker({ dateFormat: "mm/dd/yy" }); 
+
+  $("#from_date").datepicker({ dateFormat: "mm/dd/yy" });
   $("#to_date").datepicker({ dateFormat: "mm/dd/yy" });
-  
+
   $("#product-table").dataTable({
     "bJQueryUI": true,
     "sPaginationType": "full_numbers"
   });
 //]]>
 </script>
+

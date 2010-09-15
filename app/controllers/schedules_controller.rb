@@ -19,17 +19,17 @@ class SchedulesController < ApplicationController
         get_shopify_products
         render :template => 'scheduled_products/index' and return
       end
-      
+
       ScheduledProduct::schedule(current_store, @products_ids, @from, @to)
-      flash[:notice] = "Scheduling was successfull."
-      
+      flash[:notice] = "Scheduling was successful."
+
       redirect_to scheduled_products_path
     end
 
     def unschedule
       if check_products
         ScheduledProduct::unschedule(current_store, @products_ids)
-        flash[:notice] = 'Unscheduling was successfull.'
+        flash[:notice] = 'Unscheduling was successful.'
       end
 
       redirect_to scheduled_products_path
