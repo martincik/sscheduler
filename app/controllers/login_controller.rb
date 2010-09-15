@@ -58,11 +58,11 @@ class LoginController < ApplicationController
       session[:store_id] = store.id
 
       # Timezone
-      shopify_time_zone = current_shop.shop.timezone.gsub(/^\(GMT[+-]\d{2}:\d{2}\)\ /,'')
+      shopify_time_zone = current_shop.shop.timezone
       if store.time_zone != shopify_time_zone
         store.update_attributes({:time_zone => shopify_time_zone})
       end
-      Time.zone = session[:time_zone] = store.time_zone
+      Time.zone = session[:time_zone] = store.time_zone.gsub(/^\(GMT[+-]\d{2}:\d{2}\)\ /,'')
     end
 end
 
