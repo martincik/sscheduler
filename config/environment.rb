@@ -48,3 +48,5 @@ ExceptionNotification::Notifier.sender_address = %("ScheduleIt Exceptions" <exce
 # defaults to "[ERROR] "
 ExceptionNotification::Notifier.email_prefix = "[ERROR] - ScheduleIt "
 ExceptionNotification::Notifier.exception_recipients = %w{ladislav.martincik@gmail.com}
+
+ActiveSupport::XmlMini.backend = 'Nokogiri'

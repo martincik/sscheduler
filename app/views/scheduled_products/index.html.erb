@@ -38,6 +38,13 @@
           <% end -%>
         </tbody>
         <tfoot id="scheduler">
+          <% if @products_count > @per_page %>
+          <tr class="pagination">
+            <td colspan="8">
+              <%= will_paginate @products %>
+            </td>
+          </tr>
+          <% end %>
           <tr>
             <td colspan="8">
               With selected products you can:

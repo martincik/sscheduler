@@ -16,7 +16,7 @@ class SchedulesController < ApplicationController
       @from_date, @to_date = params[:from_date], params[:to_date]
 
       unless check_products and check_time_params and check_correct_time
-        get_shopify_products
+        get_shopify_products(params[:page])
         render :template => 'scheduled_products/index' and return
       end
 

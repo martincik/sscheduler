@@ -319,7 +319,7 @@ body { background: #eeeeee url(/images/background.png); }
   margin: 0 4px 4px 0;
   font-size: 9px;
 }
-#container table tbody tr.last td { border-bottom: 1px solid #bbbbbb; }
+#container table tbody tr.last td { border-bottom: 1px solid #dddddd; }
 #container table tfoot td {
   -webkit-border-bottom-left-radius: 5px;
   -webkit-border-bottom-right-radius: 5px;
@@ -329,6 +329,12 @@ body { background: #eeeeee url(/images/background.png); }
   -moz-border-radius-bottomright: 5px;
   background-color: #e8e7e3;
   padding: 20px 20px 5px 20px;
+}
+#container table tfoot tr.pagination td {
+  text-align: center;
+  border-bottom: 1px solid #bbbbbb;
+  padding: 10px 5px;
+  background-color: #eeeeee;
 }
 #install { color: #666666; }
 #install p { padding: 10px 0; }

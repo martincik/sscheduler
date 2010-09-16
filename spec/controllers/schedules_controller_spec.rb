@@ -16,6 +16,7 @@ describe SchedulesController do
     session[:store_id] = @store.id
     session[:shopify] = ShopifyAPI::Session.new(@store.shop, @store.t, @store.params)
     ShopifyAPI::Product.stub!(:find).and_return(@shopify_products)
+    ShopifyAPI::Product.stub!(:count).and_return(3)
   end
 
   it "should check scheduling params for schedule" do

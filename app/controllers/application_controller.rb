@@ -21,9 +21,16 @@ class ApplicationController < ActionController::Base
       Time.zone = session[:time_zone]
     end
 
-    def get_shopify_products
+    def get_shopify_products(page, per_page = 5)
       @products_ids ||= []
-      @products = ShopifyAPI::Product.find(:all)
+      @products_count = ShopifyAPI::Product.count
+      @per_page = per_page.to_i
+
+      page = page || 1
+      @products = WillPaginate::Collection.create(page, per_page, @products_count) do |pager|
+        results = ShopifyAPI::Product.find(:all, :params => { :page => page, :limit => pager.per_page })
+        pager.replace results
+      end
     end
 
 end

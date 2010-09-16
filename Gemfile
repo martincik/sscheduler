@@ -6,6 +6,8 @@ gem 'mysql'
 gem 'whenever', '~>0.5.0'
 gem 'less', '~>1.2.21'
 gem 'exception_notification', '~>2.3.3', :require => 'exception_notification'
+gem 'nokogiri'
+gem 'will_paginate', :git => "http://github.com/agile/will_paginate.git"
 
 platforms :ruby do
   gem 'ruby-debug'  
