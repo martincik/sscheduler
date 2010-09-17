@@ -13,6 +13,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :scheduled_products
   map.resource  :schedule
+  map.resource  :schedule_cart
 
   map.home 'scheduled_products', :controller => 'scheduled_products'
   map.exception 'exception', :controller => 'web', :action => 'exception'

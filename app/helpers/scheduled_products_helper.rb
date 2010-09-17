@@ -1,10 +1,17 @@
 module ScheduledProductsHelper
 
-  def checkbox_with_selection_for_scheduled_product(product, is_checked, check_product)
-    check_box_tag("products[#{product.id}]", "1", is_checked, {
-      :class => check_product.to_s,
-      :id => "product_#{product.id}"
-    })
+  def checkbox_with_selection_for_scheduled_product(product)
+    check_box_tag("products[#{product.id}]", "1", 
+      session[:schedule_cart].include?(product.id), 
+      :id => "checkbox_product_#{product.id}",
+      :class => "checkbox_product")
+  end
+
+  def classes_for_product_row(product, last_product)
+    klass =  [] 
+    klass << 'selected' if session[:schedule_cart].include?(product.id)
+    klass << 'last' if last_product == product 
+    klass.empty? ? '' : " class='#{klass.join(' ')}'" 
   end
 
   def product_photo_thumb(product)
@@ -19,9 +26,9 @@ module ScheduledProductsHelper
 
   def format_tags(tags_string)
     return if tags_string.blank?
-    tags_string.split(',').map { |tag|
+    tags_string.split(',').map do |tag|
       "<span>#{tag.strip}</span>"
-    }
+    end
   end
 
 end

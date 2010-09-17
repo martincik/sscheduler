@@ -14,10 +14,9 @@
         </thead>
         <tbody>
           <% @products.each do |product| %>
-          <tr<%= ' class="last"' if @products.last == product %>>
+            <tr<%= classes_for_product_row(product, @products.last) %> id="tr_product_<%=product.id%>">
             <td class="first center">
-              <%= checkbox_with_selection_for_scheduled_product(product,
-                @products_ids.include?(product.id.to_s), @checked_products) %>
+              <%= checkbox_with_selection_for_scheduled_product(product) %>
             </td>
             <td class="thumbnail center"><%= product_photo_thumb(product) %></td>
             <td class="product-info">
@@ -82,10 +81,31 @@
   $("#from_date").datepicker({ dateFormat: "mm/dd/yy" });
   $("#to_date").datepicker({ dateFormat: "mm/dd/yy" });
 
-  /*$("#product-table").dataTable({
-    "bJQueryUI": true,
-    "sPaginationType": "full_numbers"
-  });*/
+  $(".checkbox_product").click(function(e) {
+      var product_id = $(this).attr('id').split('_')[2];
+      if ($(this).is(':checked')) {
+        $.post('<%= schedule_cart_path %>', {
+          product_id: product_id  
+          }, function() {
+            console.log('done');
+            $('#tr_product_' + product_id).addClass('selected');
+          }
+        );
+      } else {
+        $.ajax({ 
+          url: '<%= schedule_cart_path %>', 
+          type: 'DELETE',
+          data: 'product_id=' + product_id,
+          success: function() {
+            console.log('undone');
+            $('#tr_product_' + product_id).removeClass('selected');
+          }
+        });
+      }
+
+  });
+
+
 //]]>
 </script>
 
