@@ -7,4 +7,9 @@ class ScheduledProductsController < ApplicationController
     get_shopify_products(params[:page], params[:per_page] || 5)
   end
 
+  def new
+    @product = ShopifyAPI::Product.find(params[:id])
+  end
+
 end
+

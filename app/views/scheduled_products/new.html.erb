@@ -1,0 +1,75 @@
+<%= link_to 'View All Products', scheduled_products_path %>
+
+<% form_tag schedule_path do -%>
+  <div class="box">
+    <div class="innerbox" style="padding: 0">
+      <table cellpadding="0" cellspacing="0" id="product-table">
+        <thead>
+          <tr>
+            <th class="first">&nbsp;</th>
+            <th class="product-info">Product detail</th>
+            <th>Status</th>
+            <th class="last">Visibility</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr id="tr_product_<%= @product.id %>">
+            <td style="padding-left: 15px;" class="thumbnail center"><%= product_photo_thumb(@product) %></td>
+            <td class="product-info">
+              <%= link_to @product.title, "http://#{current_shop.url}/admin/products/#{@product.id}" %>
+              <div>in category <%= @product.product_type %> for <%= @product.price_range %>&nbsp;<%= current_shop.shop.currency %></div>
+              <p class="tags">
+                <%= format_tags(@product.tags) %>
+              </p>
+              <p>
+                <%= strip_tags(@product.body_html) %>
+              </p>
+            </td>
+            <td><%= is_published(@product.published_at) %></td>
+            <td class="time">
+              <%= @product.to_time.to_s %><br /><%= @product.from_time.to_s %>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot id="scheduler">
+          <tr>
+            <td colspan="8">
+              With product you can:
+              <ul>
+                <li>
+                  <label>schedule them from</label>
+                  <%= text_field_tag 'from_date', @from_date, { :class => "#{@checked_dates} date" } %>
+                  <label>at</label>
+                  <%= text_field_tag 'from_time', @from_time, { :class => "#{@checked_dates} time" } %>
+                  <label>until</label>
+                  <%= text_field_tag 'to_date', @to_date, { :class => "#{@checked_dates} date" } %>
+                  <label>at</label>
+                  <%= text_field_tag 'to_time', @to_time, { :class => "#{@checked_dates} time" } %>
+                  <span class="action">
+                    <%= scheduling_button 'Schedule &raquo;', {:id => 'schedule'} %>
+                  </span>
+                </li>
+                <li>
+                  or you can <%= scheduling_button 'Unschedule &raquo;', {:id => 'unschedule'}, false %> them.
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+  <%= hidden_field_tag "products[#{@product.id}]" %>
+  <%= hidden_field_tag "redirect_to", new_scheduled_product_path(:id => @product.id) %>
+  <%= hidden_field_tag "template", new_scheduled_product_path %>
+<% end -%>
+
+<script type="text/javascript">
+//<![CDATA[
+  $("#from_time").ptTimeSelect();
+  $("#to_time").ptTimeSelect();
+
+  $("#from_date").datepicker({ dateFormat: "mm/dd/yy" });
+  $("#to_date").datepicker({ dateFormat: "mm/dd/yy" });
+</script>
+
