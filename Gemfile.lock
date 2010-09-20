@@ -1,6 +1,6 @@
 GIT
   remote: http://github.com/agile/will_paginate.git
-  revision: ab6fca53a8a66725899c0fab3e474b9c7e3a173e
+  revision: ab6fca5
   specs:
     will_paginate (2.3.6)
       activesupport (>= 1.4.4)

@@ -6,7 +6,7 @@ class SchedulesController < ApplicationController
 
   def create
     @products_ids = params[:products].try(:keys) || []
-    params[:commit] && params[:commit].downcase == 'unschedule' ? unschedule : schedule
+    params[:schedule].nil? ? unschedule : schedule
   end
 
   private
@@ -16,8 +16,7 @@ class SchedulesController < ApplicationController
       @from_date, @to_date = params[:from_date], params[:to_date]
 
       unless check_products and check_time_params and check_correct_time
-        get_shopify_products(params[:page])
-        render :template => 'scheduled_products/index' and return
+        render_products_on_page and return
       end
 
       ScheduledProduct::schedule(current_store, @products_ids, @from, @to)
@@ -31,8 +30,13 @@ class SchedulesController < ApplicationController
         ScheduledProduct::unschedule(current_store, @products_ids)
         flash[:notice] = 'Successfuly removed schedule information from our database.'
       end
+      # cannot put redirect, because of flash.now keeping from check_products
+      render_products_on_page
+    end
 
-      redirect_to scheduled_products_path
+    def render_products_on_page
+      get_shopify_products(params[:page])
+      render :template => 'scheduled_products/index'
     end
 
 end

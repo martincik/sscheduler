@@ -58,11 +58,11 @@
                   <label>at</label>
                   <%= text_field_tag 'to_time', @to_time, { :class => "#{@checked_dates} time" } %>
                   <span class="action">
-                    <%= submit_tag 'Schedule &raquo;', {:id => 'schedule'} %>
+                    <%= scheduling_button 'Schedule &raquo;', {:id => 'schedule'} %>
                   </span>
                 </li>
                 <li>
-                  or you can <%= submit_tag 'Unschedule &raquo;', {:id => 'unschedule' } %> them.
+                  or you can <%= scheduling_button 'Unschedule &raquo;', {:id => 'unschedule'}, false %> them.
                 </li>
               </ul>
             </td>
@@ -85,15 +85,15 @@
       var product_id = $(this).attr('id').split('_')[2];
       if ($(this).is(':checked')) {
         $.post('<%= schedule_cart_path %>', {
-          product_id: product_id  
+          product_id: product_id
           }, function() {
             console.log('done');
             $('#tr_product_' + product_id).addClass('selected');
           }
         );
       } else {
-        $.ajax({ 
-          url: '<%= schedule_cart_path %>', 
+        $.ajax({
+          url: '<%= schedule_cart_path %>',
           type: 'DELETE',
           data: 'product_id=' + product_id,
           success: function() {
