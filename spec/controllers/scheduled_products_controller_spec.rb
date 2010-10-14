@@ -20,7 +20,7 @@ describe ScheduledProductsController do
     ShopifyAPI::Product.stub!(:count).and_return(3)
   end
 
-  it "should check redirect for index" do
+  it "should check redirect for index we are sign-on to shopify" do
     get 'index'
     response.should render_template('index')
     session[:shopify] = nil
@@ -32,6 +32,16 @@ describe ScheduledProductsController do
     get 'index'
     assigns[:products].should have(3).items
     assigns[:products].map(&:from_time).should_not include(nil)
+  end
+
+  it "should return specified shopify product in action new" do
+    ShopifyAPI::Product.stub!(:find).with(anything()).and_return do |id|
+      @shopify_products.find{|s| s.id == id.to_i}
+    end
+
+    get 'new', :id => @shopify_products.first.id
+    assigns[:product].should_not be_nil
+    assigns[:product].id.should == @shopify_products.first.id
   end
 
 end
