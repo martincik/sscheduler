@@ -22,6 +22,6 @@
 job_type :bundled_rake, 'cd :path && RAILS_ENV=:environment /usr/bin/env bundle exec rake :task'
 
 every 1.minutes do
-  bundled_rake "cron:update_schedule", :environment => 'development'
+  bundled_rake "cron:update_schedule", :environment => 'production'
 end
 
