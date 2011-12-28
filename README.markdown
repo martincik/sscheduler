@@ -1,21 +1,5 @@
 # Start
 
-### Login informations
-
-- Shop url:     http://zdenal.myshopify.com/
-- Admin url:    https://zdenal.myshopify.com/admin
-
-    email:      ladislav.martincik@gmail.com
-    password:   sscheduler
-
-*If after login you'll get redirect to developer login page, just use admin url again.
-It should work.*
-
-- Developer url: https://zdenal.myshopify.com/services/partners/auth/login
-
-    email:      nevralaz@gmail.com
-    password:   sscheduler
-
 ### Shopify developer app settings
 
 In left menu within subsection 'Apps' click on 'sscheduler'. Now You should see
